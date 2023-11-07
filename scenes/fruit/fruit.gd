@@ -8,7 +8,7 @@ signal combine(level: int)
 const SCALE_BASE_INCREASE = 1
 const SCALE_PER_LEVEL_RATIO = 1.25
 const MAX_LEVEL: int = 11
-const TIME_TO_MATURE: float = 0.3
+const TIME_TO_MATURE: float = 0.1
 
 
 var level_manager: LevelManager
@@ -42,11 +42,15 @@ func update_size():
 
 
 func try_combine(fruit: Fruit):
-	if fruit.level != level or level >= MAX_LEVEL or fruit.is_queued_for_deletion():
+	if fruit.level != level or level >= MAX_LEVEL or \
+		fruit.is_queued_for_deletion() or is_queued_for_deletion() or \
+		age < TIME_TO_MATURE or fruit.age < TIME_TO_MATURE:
+
 		return false
 		
 	fruit.queue_free()
 	level += 1
+	age = 0
 	combine.emit(level)
 	return true
 
@@ -55,7 +59,7 @@ func _physics_process(delta):
 	if age < TIME_TO_MATURE:
 		age += delta
 	
-	if level != last_frame_level and age >= TIME_TO_MATURE:
+	if level != last_frame_level:
 		last_frame_level = level
 		update_size()
 		return
