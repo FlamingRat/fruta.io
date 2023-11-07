@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cghnhr7v6yfax"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_myktl"]
+size = Vector2(19, 848)
+
+[node name="wall" type="RigidBody2D"]
+freeze = true
+freeze_mode = 1
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-0.499998, 0)
+shape = SubResource("RectangleShape2D_myktl")

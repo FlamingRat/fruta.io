@@ -1,0 +1,158 @@
+[gd_scene load_steps=12 format=3 uid="uid://oma2ed5pgtal"]
+
+[ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
+[ext_resource type="PackedScene" uid="uid://cxhucg6omu4pf" path="res://scenes/fruit/fruit.tscn" id="2_jp5ch"]
+[ext_resource type="PackedScene" uid="uid://c4wadspmxa024" path="res://scenes/dispenser/dispenser.tscn" id="2_qxix2"]
+[ext_resource type="Script" path="res://scenes/score/score.gd" id="4_hs868"]
+[ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
+[ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
+[ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://sounds/combine2.mp3" id="7_1u7sb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikqpv"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nygq7"]
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.617188, 0.335938, 0.121094, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 20
+expand_margin_left = 5.0
+expand_margin_top = 2.0
+expand_margin_right = 5.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vg7s8"]
+size = Vector2(416, 12)
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_a8qfb")
+
+[node name="bucket" parent="." instance=ExtResource("1_0ibts")]
+
+[node name="dispenser" parent="." node_paths=PackedStringArray("level_manager", "bucket") instance=ExtResource("2_qxix2")]
+position = Vector2(196, 308)
+fruitFactory = ExtResource("2_jp5ch")
+level_manager = NodePath("..")
+bucket = NodePath("../bucket")
+
+[node name="ui_root" type="CanvasLayer" parent="."]
+
+[node name="top_bar" type="Control" parent="ui_root"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -754.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="score" type="Label" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
+text = "Score: 0"
+horizontal_alignment = 2
+script = ExtResource("4_hs868")
+
+[node name="TextureRect" type="TextureRect" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 50.0
+offset_right = -6.0
+offset_bottom = 86.0
+grow_horizontal = 2
+texture = ExtResource("6_hv4x0")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="game_over_screen" type="Control" parent="ui_root"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ui_root/game_over_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.862745)
+
+[node name="game_over_message" type="Label" parent="ui_root/game_over_screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -13.0
+offset_right = 46.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 36
+text = "Game Over!"
+
+[node name="new_game" type="MenuButton" parent="ui_root/game_over_screen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = 28.0
+offset_right = 47.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.568627, 0.247059, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_nygq7")
+toggle_mode = false
+action_mode = 1
+text = "NEW GAME"
+flat = false
+
+[node name="game_over_boundary" type="Area2D" parent="."]
+position = Vector2(200, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="game_over_boundary"]
+shape = SubResource("RectangleShape2D_vg7s8")
+
+[node name="Sprite2D" type="Sprite2D" parent="game_over_boundary"]
+texture = ExtResource("6_odop2")
+
+[node name="combine_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_1u7sb")
+max_polyphony = 11
+
+[connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
+[connection signal="score_changed" from="." to="ui_root/top_bar/score" method="_on_level_score_changed"]
+[connection signal="fruit_dropped" from="dispenser" to="." method="_on_dispenser_fruit_dropped"]
+[connection signal="pressed" from="ui_root/game_over_screen/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="body_entered" from="game_over_boundary" to="." method="_on_game_over_boundary_body_entered"]
+[connection signal="body_exited" from="game_over_boundary" to="." method="_on_game_over_boundary_body_exited"]

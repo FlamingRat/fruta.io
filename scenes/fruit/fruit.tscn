@@ -1,0 +1,81 @@
+[gd_scene load_steps=8 format=3 uid="uid://cxhucg6omu4pf"]
+
+[ext_resource type="Script" path="res://scenes/fruit/fruit.gd" id="1_qy8ei"]
+[ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="2_lmm3u"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f3k8k"]
+bounce = 0.15
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vtjvt"]
+
+[sub_resource type="Animation" id="Animation_mmi1p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_mask/sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.02, 0.02)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_hoh5b"]
+resource_name = "spawn"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite_mask/sprite:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(0.02, 0.02)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jky08"]
+_data = {
+"RESET": SubResource("Animation_mmi1p"),
+"spawn": SubResource("Animation_hoh5b")
+}
+
+[node name="fruit" type="RigidBody2D" groups=["fruit"]]
+collision_layer = 0
+collision_mask = 0
+physics_material_override = SubResource("PhysicsMaterial_f3k8k")
+max_contacts_reported = 255
+contact_monitor = true
+script = ExtResource("1_qy8ei")
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_vtjvt")
+
+[node name="animator" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jky08")
+}
+
+[node name="sprite_mask" type="Node2D" parent="."]
+
+[node name="sprite" type="Sprite2D" parent="sprite_mask"]
+scale = Vector2(0.02, 0.02)
+texture = ExtResource("2_lmm3u")
+hframes = 11
