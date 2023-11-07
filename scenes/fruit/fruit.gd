@@ -5,14 +5,16 @@ class_name Fruit
 signal combine(level: int)
 
 
-const SCALE_BASE_INCREASE = 0.5
-const SCALE_PER_LEVEL_RATIO = 1.5
+const SCALE_BASE_INCREASE = 1
+const SCALE_PER_LEVEL_RATIO = 1.25
 const MAX_LEVEL: int = 11
+const TIME_TO_MATURE: float = 0.3
 
 
 var level_manager: LevelManager
 var level: int = 1
 var last_frame_level: int = 1
+var age: float = 0
 
 
 @onready var animator: AnimationPlayer = $animator
@@ -23,10 +25,10 @@ var last_frame_level: int = 1
 
 func _ready():
 	combine.connect(level_manager._on_fruit_combined)
-	update_size()
 	animator.play("spawn")
-	
-	
+	update_size()
+
+
 func animate_promotion(new_pos: Vector2):
 	var tween = create_tween()
 	tween.tween_property(self, "position", new_pos, 0.3)
@@ -49,8 +51,11 @@ func try_combine(fruit: Fruit):
 	return true
 
 
-func _physics_process(_delta):
-	if level != last_frame_level:
+func _physics_process(delta):
+	if age < TIME_TO_MATURE:
+		age += delta
+	
+	if level != last_frame_level and age >= TIME_TO_MATURE:
 		last_frame_level = level
 		update_size()
 		return

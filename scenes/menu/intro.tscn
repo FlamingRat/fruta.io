@@ -3,6 +3,21 @@
 [ext_resource type="Script" path="res://scenes/menu/intro.gd" id="1_avwri"]
 [ext_resource type="Texture2D" uid="uid://sp1ddks8b0wo" path="res://sprites/LogoWithText.png" id="1_lwb15"]
 
+[sub_resource type="Animation" id="Animation_gks54"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_j83d6"]
 resource_name = "fadein"
 length = 5.0
@@ -31,21 +46,6 @@ tracks/1/keys = {
 "args": [],
 "method": &"open_menu"
 }]
-}
-
-[sub_resource type="Animation" id="Animation_gks54"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("..:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rds5e"]
