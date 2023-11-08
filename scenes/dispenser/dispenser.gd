@@ -52,10 +52,13 @@ func promote_fruit():
 
 
 func drop_fruit():
-	fruit_dropped.emit(current_fruit.level)
+	turn_count += 1
+
 	remove_child(current_fruit)
 	get_tree().current_scene.add_child(current_fruit)
+
 	current_fruit.global_position = global_position
+	fruit_dropped.emit(current_fruit.level)
 	current_fruit.set_collision_mask_value(1, true)
 	current_fruit.set_collision_layer_value(1, true)
 	current_fruit.freeze = false
@@ -67,11 +70,12 @@ func _physics_process(_delta):
 	var follow_coords = get_global_mouse_position()
 	var fruit_radius = get_fruit_size(current_fruit) / 2
 	position.x = max(min(follow_coords.x, bucket.end_r - fruit_radius), bucket.end_l + fruit_radius)
-	
-	if Input.is_action_just_released("drop") and current_fruit.global_position == global_position:
-		drop_fruit()
-		turn_count += 1
 
 
 func _on_level_game_over():
 	queue_free()
+
+
+func _on_input_mask_drop_fruit_pressed():
+	if current_fruit.global_position == global_position:
+		drop_fruit()

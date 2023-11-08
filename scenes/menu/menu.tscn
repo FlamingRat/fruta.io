@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4anvj4twl3db"]
 
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_f80g0"]
-[ext_resource type="Texture2D" uid="uid://c4hug1rxgwgws" path="res://sprites/logo.png" id="1_xub72"]
+[ext_resource type="Texture2D" uid="uid://c4hug1rxgwgws" path="res://assets/logo.png" id="1_xub72"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2l2n5"]
 bg_color = Color(1, 1, 1, 1)
