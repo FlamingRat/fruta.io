@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://oma2ed5pgtal"]
+[gd_scene load_steps=13 format=3 uid="uid://oma2ed5pgtal"]
 
 [ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
 [ext_resource type="PackedScene" uid="uid://cxhucg6omu4pf" path="res://scenes/fruit/fruit.tscn" id="2_jp5ch"]
 [ext_resource type="PackedScene" uid="uid://c4wadspmxa024" path="res://scenes/dispenser/dispenser.tscn" id="2_qxix2"]
 [ext_resource type="Script" path="res://scenes/score/score.gd" id="4_hs868"]
+[ext_resource type="Script" path="res://scenes/score/high_score.gd" id="5_aovaq"]
 [ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://sounds/combine2.mp3" id="7_1u7sb"]
@@ -56,6 +57,18 @@ anchor_bottom = 1.0
 offset_bottom = -754.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="high_score" type="Label" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.25098, 0.25098, 0.25098, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
+text = "High score: 0"
+script = ExtResource("5_aovaq")
 
 [node name="score" type="Label" parent="ui_root/top_bar"]
 layout_mode = 1
@@ -152,6 +165,7 @@ stream = ExtResource("7_1u7sb")
 max_polyphony = 11
 
 [connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
+[connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]
 [connection signal="score_changed" from="." to="ui_root/top_bar/score" method="_on_level_score_changed"]
 [connection signal="fruit_dropped" from="dispenser" to="." method="_on_dispenser_fruit_dropped"]
 [connection signal="pressed" from="ui_root/game_over_screen/new_game" to="." method="_on_new_game_pressed"]

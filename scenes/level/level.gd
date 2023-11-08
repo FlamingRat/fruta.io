@@ -3,18 +3,40 @@ class_name LevelManager
 
 
 const GAME_OVER_TIMEOUT = 5.0
+const HIGH_SCORE_FILE = "user://highscores.save"
 
 
 signal score_changed(score: int)
+signal high_score_updated(score: int)
 signal game_over
 
 
 var score: int = 0 : set = update_score
 var fruit_counter: int = 0
 var game_over_timer: float = 0
+var high_score: int = 0
 
 
 @onready var combine_audio: AudioStreamPlayer = $combine_audio
+@onready var high_score_label: Label = $ui_root/top_bar/high_score
+
+
+func update_high_score(new_score: int):	
+	var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.WRITE)
+	
+	fd.store_var({'high_score': new_score}, true)
+	fd.close()
+	
+	high_score_updated.emit(new_score)
+
+
+func _ready():
+	if FileAccess.file_exists(HIGH_SCORE_FILE):
+		var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.READ)
+		var data = fd.get_var(true)
+
+		if 'high_score' in data:
+			update_high_score(data['high_score'])
 
 
 func _physics_process(delta):
@@ -31,6 +53,9 @@ func _physics_process(delta):
 func update_score(new: int):
 	score = new
 	score_changed.emit(score)
+	
+	if score > high_score:
+		update_high_score(score)
 	
 	
 func new_game():
