@@ -27,6 +27,7 @@ func update_high_score(new_score: int):
 	fd.store_var({'high_score': new_score}, true)
 	fd.close()
 	
+	high_score = new_score
 	high_score_updated.emit(new_score)
 
 
