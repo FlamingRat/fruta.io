@@ -4,7 +4,9 @@ extends Node2D
 signal fruit_dropped(level: int)
 
 
-const MAX_LEVEL_SPAWN = 5
+const STARTING_MAX_SPAWN_LEVEL: int = 3
+const TURNS_TO_INCREASE_MAX_SPAWN_LEVEL: float = 7
+const FINAL_MAX_SPAWN_LEVEL: int = 5
 
 
 @export var fruitFactory: PackedScene
@@ -36,8 +38,16 @@ func reposition_fruit():
 
 
 func get_new_fruit():
+	var max_spawn_level_increase = floor(
+		turn_count / TURNS_TO_INCREASE_MAX_SPAWN_LEVEL
+	)
+	var max_level = min(
+		STARTING_MAX_SPAWN_LEVEL + max_spawn_level_increase,
+		FINAL_MAX_SPAWN_LEVEL
+	)
+
 	next_fruit = fruitFactory.instantiate()
-	next_fruit.level = randi_range(1, min(2 + floor(turn_count / 6.0), MAX_LEVEL_SPAWN))
+	next_fruit.level = randi_range(1, max_level)
 	next_fruit.level_manager = level_manager
 	add_child(next_fruit)
 	next_fruit.freeze = true
