@@ -40,6 +40,12 @@ func update_size():
 	sprite.frame = level - 1
 	shape.scale = (1 + constant_increase) * SCALE_PER_LEVEL_RATIO * Vector2.ONE
 	animate_size()
+	
+	
+func grow():
+	level += 1
+	age = 0
+	combine.emit(level)
 
 
 func try_combine(fruit: Fruit):
@@ -48,14 +54,22 @@ func try_combine(fruit: Fruit):
 		age < TIME_TO_MATURE or fruit.age < TIME_TO_MATURE:
 
 		return false
-		
-	fruit.queue_free()
-	level += 1
-	age = 0
-	combine.emit(level)
+
+	var lower: Fruit
+	var higher: Fruit
+	
+	if position.y >= fruit.position.y:
+		lower = self
+		higher = fruit
+	else:
+		lower = fruit
+		higher = self
+	
+	higher.queue_free()
+	lower.grow()
 	return true
-	
-	
+
+
 func animate_size():
 	var tween = create_tween()
 	sprite.scale = Vector2.ZERO
