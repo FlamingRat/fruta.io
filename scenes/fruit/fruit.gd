@@ -6,7 +6,7 @@ signal combine(level: int)
 
 
 const SCALE_BASE_INCREASE = 1
-const SCALE_PER_LEVEL_RATIO = 1.25
+const SCALE_PER_LEVEL_RATIO = 1.15
 const MAX_LEVEL: int = 11
 const TIME_TO_MATURE: float = 0.1
 
