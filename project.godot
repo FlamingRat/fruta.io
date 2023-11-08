@@ -43,7 +43,6 @@ drop={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=2
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.859375, 0.863281, 0.632813, 1)
