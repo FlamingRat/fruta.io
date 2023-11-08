@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmq6trva8ejv5"]
+[gd_scene load_steps=7 format=3 uid="uid://bmq6trva8ejv5"]
 
 [ext_resource type="Script" path="res://scenes/menu/intro.gd" id="1_avwri"]
-[ext_resource type="Texture2D" uid="uid://sp1ddks8b0wo" path="res://sprites/LogoWithText.png" id="1_lwb15"]
+[ext_resource type="Texture2D" uid="uid://sp1ddks8b0wo" path="res://assets/LogoWithText.png" id="1_lwb15"]
+[ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/click_mask.tscn" id="3_62jrv"]
 
 [sub_resource type="Animation" id="Animation_gks54"]
 length = 0.001
@@ -61,14 +62,23 @@ script = ExtResource("1_avwri")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 process_mode = 3
-root_node = NodePath("../ColorRect/FlamingRatLogo")
+root_node = NodePath("../Control/ColorRect/FlamingRatLogo")
 autoplay = "fadein"
 libraries = {
 "": SubResource("AnimationLibrary_rds5e")
 }
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control"]
 modulate = Color(0, 0, 0, 1)
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -76,7 +86,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.101563, 0.101563, 0.101563, 1)
 
-[node name="FlamingRatLogo" type="TextureRect" parent="CanvasLayer/ColorRect"]
+[node name="FlamingRatLogo" type="TextureRect" parent="CanvasLayer/Control/ColorRect"]
 layout_mode = 1
 anchors_preset = 14
 anchor_top = 0.5
@@ -89,3 +99,8 @@ grow_vertical = 2
 texture = ExtResource("1_lwb15")
 expand_mode = 4
 stretch_mode = 4
+
+[node name="click_mask" parent="CanvasLayer/Control/ColorRect" instance=ExtResource("3_62jrv")]
+layout_mode = 1
+
+[connection signal="click_mask_pressed" from="CanvasLayer/Control/ColorRect/click_mask" to="." method="_on_click_mask_click_mask_pressed"]

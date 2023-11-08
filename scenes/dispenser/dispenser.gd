@@ -76,6 +76,6 @@ func _on_level_game_over():
 	queue_free()
 
 
-func _on_input_mask_drop_fruit_pressed():
+func _on_input_mask_click_mask_pressed():
 	if current_fruit.global_position == global_position:
 		drop_fruit()

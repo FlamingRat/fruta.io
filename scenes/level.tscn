@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://oma2ed5pgtal"]
+[gd_scene load_steps=14 format=3 uid="uid://oma2ed5pgtal"]
 
 [ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
@@ -9,21 +9,13 @@
 [ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://sounds/combine2.mp3" id="7_1u7sb"]
-[ext_resource type="Script" path="res://scenes/input_mask.gd" id="8_oe1qr"]
+[ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/click_mask.tscn" id="8_fha15"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikqpv"]
 content_margin_left = 5.0
 content_margin_top = 5.0
 content_margin_right = 5.0
 content_margin_bottom = 5.0
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_301ae"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cbyfj"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vxue"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4wale"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nygq7"]
 bg_color = Color(1, 1, 1, 1)
@@ -115,18 +107,9 @@ offset_bottom = -15.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="input_mask" type="Button" parent="ui_root/main_ui"]
+[node name="input_mask" parent="ui_root/main_ui" instance=ExtResource("8_fha15")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxEmpty_301ae")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_cbyfj")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_8vxue")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4wale")
-script = ExtResource("8_oe1qr")
+offset_bottom = -11.0
 
 [node name="game_over_screen" type="Control" parent="ui_root"]
 visible = false
@@ -200,7 +183,7 @@ max_polyphony = 11
 [connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]
 [connection signal="score_changed" from="." to="ui_root/top_bar/score" method="_on_level_score_changed"]
 [connection signal="fruit_dropped" from="dispenser" to="." method="_on_dispenser_fruit_dropped"]
-[connection signal="drop_fruit_pressed" from="ui_root/main_ui/input_mask" to="dispenser" method="_on_input_mask_drop_fruit_pressed"]
+[connection signal="click_mask_pressed" from="ui_root/main_ui/input_mask" to="dispenser" method="_on_input_mask_click_mask_pressed"]
 [connection signal="pressed" from="ui_root/game_over_screen/new_game" to="." method="_on_new_game_pressed"]
 [connection signal="body_entered" from="game_over_boundary" to="." method="_on_game_over_boundary_body_entered"]
 [connection signal="body_exited" from="game_over_boundary" to="." method="_on_game_over_boundary_body_exited"]
