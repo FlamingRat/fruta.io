@@ -15,9 +15,9 @@ var level_manager: LevelManager
 var level: int = 1
 var last_frame_level: int = 1
 var age: float = 0
+var max_scale: Vector2
 
 
-@onready var animator: AnimationPlayer = $animator
 @onready var sprite_mask: Node2D = $sprite_mask
 @onready var sprite: Sprite2D = $sprite_mask/sprite
 @onready var shape: CollisionShape2D = $shape
@@ -25,7 +25,7 @@ var age: float = 0
 
 func _ready():
 	combine.connect(level_manager._on_fruit_combined)
-	animator.play("spawn")
+	max_scale = sprite.scale
 	update_size()
 
 
@@ -39,6 +39,7 @@ func update_size():
 	sprite_mask.scale = (1 + constant_increase) * SCALE_PER_LEVEL_RATIO * Vector2.ONE
 	sprite.frame = level - 1
 	shape.scale = (1 + constant_increase) * SCALE_PER_LEVEL_RATIO * Vector2.ONE
+	animate_size()
 
 
 func try_combine(fruit: Fruit):
@@ -53,6 +54,12 @@ func try_combine(fruit: Fruit):
 	age = 0
 	combine.emit(level)
 	return true
+	
+	
+func animate_size():
+	var tween = create_tween()
+	sprite.scale = Vector2.ZERO
+	tween.tween_property(sprite, "scale", max_scale, 0.2)
 
 
 func _physics_process(delta):
@@ -66,5 +73,4 @@ func _physics_process(delta):
 
 	for body in get_colliding_bodies():
 		if body.is_in_group('fruit') and try_combine(body):
-			animator.play("spawn")
 			break
