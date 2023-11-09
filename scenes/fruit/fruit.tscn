@@ -23,6 +23,6 @@ shape = SubResource("CircleShape2D_vtjvt")
 [node name="sprite_mask" type="Node2D" parent="."]
 
 [node name="sprite" type="Sprite2D" parent="sprite_mask"]
-scale = Vector2(0.02, 0.02)
+scale = Vector2(0.04, 0.04)
 texture = ExtResource("2_lmm3u")
 hframes = 11
