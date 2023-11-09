@@ -14,6 +14,7 @@ signal game_over
 var score: int = 0 : set = update_score
 var fruit_counter: int = 0
 var game_over_timer: float = 0
+var is_game_over = false
 var high_score: int = 0
 
 
@@ -48,6 +49,7 @@ func _physics_process(delta):
 		
 	if game_over_timer > GAME_OVER_TIMEOUT:
 		game_over.emit()
+		is_game_over = true
 		$ui_root/game_over_screen.visible = true
 
 
@@ -64,10 +66,16 @@ func new_game():
 
 
 func _on_dispenser_fruit_dropped(level: int):
+	if is_game_over:
+		return
+
 	score += int(pow(2, level))
 	
 
 func _on_fruit_combined(level: int):
+	if is_game_over:
+		return
+
 	score += int(pow(2, level))
 	combine_audio.play()
 
