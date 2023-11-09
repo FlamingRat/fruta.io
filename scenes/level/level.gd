@@ -2,7 +2,9 @@ extends Node2D
 class_name LevelManager
 
 
-const GAME_OVER_TIMEOUT = 5.0
+const GAME_OVER_TIMEOUT = 7.0
+const GAME_OVER_WARNING = 3.0
+const GAME_OVER_BOUNDARY_TIMER = 1.0
 const HIGH_SCORE_FILE = "user://highscores.save"
 
 
@@ -20,6 +22,7 @@ var high_score: int = 0
 
 @onready var combine_audio: AudioStreamPlayer = $combine_audio
 @onready var high_score_label: Label = $ui_root/top_bar/high_score
+@onready var game_over_timer_label: Label = $ui_root/main_ui/game_over_timer
 
 
 func update_high_score(new_score: int):	
@@ -41,16 +44,48 @@ func _ready():
 			update_high_score(data['high_score'])
 
 
-func _physics_process(delta):
-	if fruit_counter > 0:
-		game_over_timer += delta
+func set_game_over_boundary_visible(visible: bool):
+	var tween = create_tween()
+	tween.tween_property(
+		$game_over_boundary/sprite,
+		'modulate',
+		Color(1, 1, 1, 1 if visible else 0),
+		0.5,
+	)
+
+
+func game_over_countdown(delta: float):
+	game_over_timer += delta
+	
+	if game_over_timer > GAME_OVER_BOUNDARY_TIMER:
+		set_game_over_boundary_visible(true)
+
+	if game_over_timer > GAME_OVER_WARNING and !is_game_over:
+		var time = str(floor(GAME_OVER_TIMEOUT - game_over_timer))
+		game_over_timer_label.set_text(time)
+
+
+func reset_game_over_countdown():
+	game_over_timer = 0
+	game_over_timer_label.set_text('')
+
+	set_game_over_boundary_visible(false)
+	
+	
+func declare_game_over():
+	is_game_over = true
+	$ui_root/game_over_screen.visible = true
+	game_over.emit()
+
+
+func _physics_process(delta: float):
+	if fruit_counter > 0 and !is_game_over:
+		game_over_countdown(delta)
+
+		if game_over_timer > GAME_OVER_TIMEOUT:
+			declare_game_over()
 	else:
-		game_over_timer = 0
-		
-	if game_over_timer > GAME_OVER_TIMEOUT:
-		game_over.emit()
-		is_game_over = true
-		$ui_root/game_over_screen.visible = true
+		reset_game_over_countdown()
 
 
 func update_score(new: int):
@@ -59,10 +94,6 @@ func update_score(new: int):
 	
 	if score > high_score:
 		update_high_score(score)
-	
-	
-func new_game():
-	get_tree().reload_current_scene()
 
 
 func _on_dispenser_fruit_dropped(level: int):
@@ -91,4 +122,4 @@ func _on_game_over_boundary_body_exited(body):
 
 
 func _on_new_game_pressed():
-	new_game()
+	get_tree().reload_current_scene()
