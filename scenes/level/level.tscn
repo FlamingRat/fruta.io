@@ -192,6 +192,7 @@ shape = SubResource("RectangleShape2D_vg7s8")
 
 [node name="sprite" type="Sprite2D" parent="game_over_boundary"]
 modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 8)
 texture = ExtResource("6_odop2")
 
 [node name="combine_audio" type="AudioStreamPlayer" parent="."]
