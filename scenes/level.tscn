@@ -166,14 +166,14 @@ theme_override_font_sizes/font_size = 36
 text = "Game Over!"
 horizontal_alignment = 1
 
-[node name="high_score" type="Label" parent="ui_root/game_over_screen/VBoxContainer"]
+[node name="score" type="Label" parent="ui_root/game_over_screen/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.25098, 0.25098, 0.25098, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
 text = "High score: 0"
 horizontal_alignment = 1
-script = ExtResource("5_aovaq")
+script = ExtResource("4_hs868")
 
 [node name="new_game" type="MenuButton" parent="ui_root/game_over_screen/VBoxContainer"]
 layout_mode = 2
@@ -201,6 +201,7 @@ max_polyphony = 11
 [connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
 [connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]
 [connection signal="score_changed" from="." to="ui_root/top_bar/score" method="_on_level_score_changed"]
+[connection signal="score_changed" from="." to="ui_root/game_over_screen/VBoxContainer/score" method="_on_level_score_changed"]
 [connection signal="fruit_dropped" from="dispenser" to="." method="_on_dispenser_fruit_dropped"]
 [connection signal="click_mask_pressed" from="ui_root/main_ui/input_mask" to="dispenser" method="_on_input_mask_click_mask_pressed"]
 [connection signal="pressed" from="ui_root/game_over_screen/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
