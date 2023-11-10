@@ -19,22 +19,29 @@ var next_fruit: Fruit
 var turn_count: int = 0
 
 
-func _ready():
-	get_new_fruit()
-	promote_fruit()
-
-
 func get_fruit_size(fruit: Fruit):
 	var fruit_box: CollisionShape2D = fruit.get_node('shape')
 	return fruit_box.shape.get_rect().size.x * fruit_box.scale.x
+
+
+func reposition():
+	var follow_coords = get_global_mouse_position()
+	var fruit_radius = get_fruit_size(current_fruit) / 2 if current_fruit else 0
+	global_position.x = max(
+		min(follow_coords.x, bucket.end_r - fruit_radius),
+		bucket.end_l + fruit_radius
+	)
 	
 	
 func reposition_fruit():
-	current_fruit.animate_promotion(Vector2.ZERO)
-	next_fruit.global_position += (
+	var next_fruit_position = (
 		Vector2.UP *
 		(get_fruit_size(next_fruit) / 2 + 4 + get_fruit_size(current_fruit) / 2)
 	)
+	
+	current_fruit.position = next_fruit_position
+	current_fruit.animate_promotion(Vector2.ZERO)
+	next_fruit.position = next_fruit_position
 
 
 func get_new_fruit():
@@ -67,7 +74,7 @@ func drop_fruit():
 	remove_child(current_fruit)
 	get_tree().current_scene.add_child(current_fruit)
 
-	current_fruit.global_position = global_position
+	current_fruit.global_position = global_position	
 	fruit_dropped.emit(current_fruit.level)
 	current_fruit.set_collision_mask_value(1, true)
 	current_fruit.set_collision_layer_value(1, true)
@@ -76,10 +83,14 @@ func drop_fruit():
 	promote_fruit()
 
 
+func _ready():
+	reposition()
+	get_new_fruit()
+	promote_fruit()
+
+
 func _physics_process(_delta):
-	var follow_coords = get_global_mouse_position()
-	var fruit_radius = get_fruit_size(current_fruit) / 2
-	position.x = max(min(follow_coords.x, bucket.end_r - fruit_radius), bucket.end_l + fruit_radius)
+	reposition()
 
 
 func _on_level_game_over():
