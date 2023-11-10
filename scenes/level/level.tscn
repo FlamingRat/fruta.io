@@ -55,10 +55,12 @@ bucket = NodePath("../bucket")
 
 [node name="top_bar" type="Control" parent="ui_root"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_bottom = -754.0
+offset_left = -200.0
+offset_right = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -102,11 +104,12 @@ stretch_mode = 4
 
 [node name="main_ui" type="Control" parent="ui_root"]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_top = 96.0
-offset_bottom = -15.0
+offset_left = -200.0
+offset_right = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -133,9 +136,12 @@ offset_bottom = -11.0
 [node name="game_over_screen" type="Control" parent="ui_root"]
 visible = false
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = -200.0
+offset_right = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -198,6 +204,9 @@ texture = ExtResource("6_odop2")
 [node name="combine_audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_1u7sb")
 max_polyphony = 11
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(201, 430)
 
 [connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
 [connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]

@@ -22,7 +22,7 @@ config/icon="res://icon.svg"
 window/size/viewport_width=400
 window/size/viewport_height=860
 window/stretch/mode="canvas_items"
-window/stretch/aspect="keep_width"
+window/stretch/aspect="expand"
 window/handheld/orientation=1
 
 [filesystem]
@@ -46,5 +46,3 @@ drop={
 renderer/rendering_method="mobile"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0.859375, 0.863281, 0.632813, 1)
-anti_aliasing/quality/msaa_2d=1
-anti_aliasing/quality/screen_space_aa=1
