@@ -26,6 +26,7 @@ var combo_timeout: float = 0
 @onready var combine_audio: AudioStreamPlayer = $combine_audio
 @onready var high_score_label: Label = $ui_root/top_bar/high_score
 @onready var game_over_timer_label: Label = $ui_root/main_ui/game_over_timer
+@onready var combo_counter_label: Label = $ui_root/main_ui/combo_counter
 
 
 func update_high_score(new_score: int):
@@ -90,6 +91,14 @@ func _physics_process(delta: float):
 	else:
 		reset_game_over_countdown()
 		
+	if combo_counter > 1:
+		combo_counter_label.set_text('x{0}!'.format([combo_counter]))
+		combo_counter_label.scale = Vector2.ZERO
+		var tween = create_tween()
+		tween.tween_property(combo_counter_label, 'scale', Vector2.ONE, 0.1)
+	else:
+		combo_counter_label.set_text('')
+		
 	if combo_timeout >= 0:
 		combo_timeout -= delta
 	else:
@@ -108,18 +117,20 @@ func _on_dispenser_fruit_dropped(level: int):
 	if is_game_over:
 		return
 
-	score += int(pow(2, level))
+	score += int(pow(2, level - 1))
 	
 
 func _on_fruit_combined(level: int):
+	print('level {0} fruit merged'.format([level]))
 	if is_game_over:
 		return
 
-	score += int(pow(2, level))
 	combo_timeout = COMBO_TIMEOUT_SECONDS
 	combo_counter += 1
 	combine_audio.pitch_scale = 0.9 + 0.1 * combo_counter
 	combine_audio.play()
+
+	score += ceil(int(pow(2, level - 1)) * combo_counter)
 
 
 func _on_game_over_boundary_body_entered(body: Node2D):
