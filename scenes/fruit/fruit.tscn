@@ -18,6 +18,7 @@ collision_mask = 0
 physics_material_override = SubResource("PhysicsMaterial_f3k8k")
 max_contacts_reported = 255
 contact_monitor = true
+can_sleep = false
 script = ExtResource("1_qy8ei")
 
 [node name="shape" type="CollisionShape2D" parent="."]
