@@ -104,12 +104,9 @@ stretch_mode = 4
 
 [node name="main_ui" type="Control" parent="ui_root"]
 layout_mode = 3
-anchors_preset = 13
-anchor_left = 0.5
-anchor_right = 0.5
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -200.0
-offset_right = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -131,7 +128,8 @@ horizontal_alignment = 1
 
 [node name="input_mask" parent="ui_root/main_ui" instance=ExtResource("8_fha15")]
 layout_mode = 1
-offset_bottom = -11.0
+offset_top = 100.0
+offset_bottom = -15.0
 
 [node name="game_over_screen" type="Control" parent="ui_root"]
 visible = false
