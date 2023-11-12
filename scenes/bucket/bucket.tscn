@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scenes/bucket/bucket.gd" id="1_le51v"]
 [ext_resource type="Texture2D" uid="uid://dclmpkbti2u36" path="res://sprites/bg.png" id="2_4w82o"]
-[ext_resource type="PackedScene" uid="uid://cghnhr7v6yfax" path="res://scenes/wall.tscn" id="3_sagtr"]
-[ext_resource type="PackedScene" uid="uid://bfa0ll7l2urp3" path="res://scenes/floor.tscn" id="4_efvj2"]
+[ext_resource type="PackedScene" uid="uid://cghnhr7v6yfax" path="res://scenes/bucket/wall.tscn" id="3_sagtr"]
+[ext_resource type="PackedScene" uid="uid://bfa0ll7l2urp3" path="res://scenes/bucket/floor.tscn" id="4_efvj2"]
 
 [node name="bucket" type="Node2D"]
 script = ExtResource("1_le51v")
