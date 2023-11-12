@@ -19,24 +19,19 @@ var next_fruit: Fruit
 var turn_count: int = 0
 
 
-func get_fruit_size(fruit: Fruit):
-	var fruit_box: CollisionShape2D = fruit.get_node('shape')
-	return fruit_box.shape.get_rect().size.x * fruit_box.scale.x
-
-
 func reposition():
 	var follow_coords = get_global_mouse_position()
-	var fruit_radius = get_fruit_size(current_fruit) / 2 if current_fruit else 0
+	var r: float = current_fruit.radius if current_fruit else 0.0
 	global_position.x = max(
-		min(follow_coords.x, bucket.end_r - fruit_radius),
-		bucket.end_l + fruit_radius
+		min(follow_coords.x, bucket.end_r - r),
+		bucket.end_l + r
 	)
 	
 	
 func reposition_fruit():
 	var next_fruit_position = (
 		Vector2.UP *
-		(get_fruit_size(next_fruit) / 2 + 4 + get_fruit_size(current_fruit) / 2)
+		(next_fruit.radius + 2 + current_fruit.radius)
 	)
 	
 	current_fruit.position = next_fruit_position

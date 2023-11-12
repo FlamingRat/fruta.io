@@ -5,8 +5,8 @@ class_name Fruit
 signal combine(level: int)
 
 
-const SCALE_BASE_INCREASE = 1
-const SCALE_PER_LEVEL_RATIO = 1.15
+const MAX_SCALE = 8.3
+const EASING = 1.1
 const MAX_LEVEL: int = 11
 const TIME_TO_MATURE: float = 0.1
 
@@ -15,7 +15,8 @@ var level_manager: LevelManager
 var level: int = 1
 var last_frame_level: int = 1
 var age: float = 0
-var max_scale: Vector2
+var sprite_scale: Vector2
+var radius: float = 0 : get = get_radius
 
 
 @onready var sprite_mask: Node2D = $sprite_mask
@@ -23,9 +24,13 @@ var max_scale: Vector2
 @onready var shape: CollisionShape2D = $shape
 
 
+func get_radius():
+	return shape.shape.get_rect().size.x * shape.scale.x / 2
+
+
 func _ready():
 	combine.connect(level_manager._on_fruit_combined)
-	max_scale = sprite.scale
+	sprite_scale = sprite.scale
 	update_size()
 
 
@@ -35,10 +40,12 @@ func animate_promotion(new_pos: Vector2):
 
 
 func update_size():
-	var constant_increase = SCALE_BASE_INCREASE * level
-	sprite_mask.scale = (1 + constant_increase) * SCALE_PER_LEVEL_RATIO * Vector2.ONE
+	var progress = (level - 1.0) / (MAX_LEVEL - 1.0)
+	var current_scale = 1 + (MAX_SCALE - 1) * pow(progress, EASING)
+	sprite_mask.scale = current_scale * Vector2.ONE
 	sprite.frame = level - 1
-	shape.scale = (1 + constant_increase) * SCALE_PER_LEVEL_RATIO * Vector2.ONE
+	shape.scale = current_scale * Vector2.ONE
+	
 	animate_size()
 	
 	
@@ -73,7 +80,7 @@ func try_combine(fruit: Fruit):
 func animate_size():
 	var tween = create_tween()
 	sprite.scale = Vector2.ZERO
-	tween.tween_property(sprite, "scale", max_scale, 0.2)
+	tween.tween_property(sprite, "scale", sprite_scale, 0.2)
 
 
 func _physics_process(delta):

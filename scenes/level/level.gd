@@ -44,12 +44,12 @@ func _ready():
 			update_high_score(data['high_score'])
 
 
-func set_game_over_boundary_visible(visible: bool):
+func set_game_over_boundary_visible(value: bool):
 	var tween = create_tween()
 	tween.tween_property(
 		$game_over_boundary/sprite,
 		'modulate',
-		Color(1, 1, 1, 1 if visible else 0),
+		Color(1, 1, 1, 1 if value else 0),
 		0.5,
 	)
 
