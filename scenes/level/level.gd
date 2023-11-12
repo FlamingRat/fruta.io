@@ -2,6 +2,7 @@ extends Node2D
 class_name LevelManager
 
 
+const SCORE_VERSION = '23.11.12.1'
 const GAME_OVER_TIMEOUT = 7.0
 const GAME_OVER_WARNING = 3.0
 const GAME_OVER_BOUNDARY_TIMER = 1.0
@@ -32,7 +33,10 @@ var combo_timeout: float = 0
 func update_high_score(new_score: int):
 	var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.WRITE)
 	
-	fd.store_var({'high_score': new_score}, true)
+	fd.store_var({
+		'high_score': new_score,
+		'version': SCORE_VERSION,
+	}, true)
 	fd.close()
 	
 	high_score = new_score
@@ -44,7 +48,9 @@ func _ready():
 		var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.READ)
 		var data = fd.get_var(true)
 
-		if 'high_score' in data:
+		if 'high_score' in data and \
+			'version' in data and \
+			data['version'] == SCORE_VERSION:
 			update_high_score(data['high_score'])
 
 
