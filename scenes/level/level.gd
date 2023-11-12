@@ -6,6 +6,7 @@ const GAME_OVER_TIMEOUT = 7.0
 const GAME_OVER_WARNING = 3.0
 const GAME_OVER_BOUNDARY_TIMER = 1.0
 const HIGH_SCORE_FILE = "user://highscores.save"
+const COMBO_TIMEOUT_SECONDS = 1
 
 
 signal score_changed(score: int)
@@ -18,6 +19,8 @@ var fruit_counter: int = 0
 var game_over_timer: float = 0
 var is_game_over = false
 var high_score: int = 0
+var combo_counter: int = 0
+var combo_timeout: float = 0
 
 
 @onready var combine_audio: AudioStreamPlayer = $combine_audio
@@ -25,7 +28,7 @@ var high_score: int = 0
 @onready var game_over_timer_label: Label = $ui_root/main_ui/game_over_timer
 
 
-func update_high_score(new_score: int):	
+func update_high_score(new_score: int):
 	var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.WRITE)
 	
 	fd.store_var({'high_score': new_score}, true)
@@ -86,6 +89,11 @@ func _physics_process(delta: float):
 			declare_game_over()
 	else:
 		reset_game_over_countdown()
+		
+	if combo_timeout >= 0:
+		combo_timeout -= delta
+	else:
+		combo_counter = 0
 
 
 func update_score(new: int):
@@ -108,6 +116,9 @@ func _on_fruit_combined(level: int):
 		return
 
 	score += int(pow(2, level))
+	combo_timeout = COMBO_TIMEOUT_SECONDS
+	combo_counter += 1
+	combine_audio.pitch_scale = 0.9 + 0.1 * combo_counter
 	combine_audio.play()
 
 
