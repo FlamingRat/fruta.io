@@ -73,6 +73,8 @@ func drop_fruit():
 	fruit_dropped.emit(current_fruit.level)
 	current_fruit.set_collision_mask_value(1, true)
 	current_fruit.set_collision_layer_value(1, true)
+	current_fruit.merge_range.set_collision_layer_value(1, true)
+	current_fruit.merge_range.set_collision_mask_value(1, true)
 	current_fruit.freeze = false
 	current_fruit = null
 	promote_fruit()

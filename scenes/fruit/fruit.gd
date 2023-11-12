@@ -22,6 +22,7 @@ var radius: float = 0 : get = get_radius
 @onready var sprite_mask: Node2D = $sprite_mask
 @onready var sprite: Sprite2D = $sprite_mask/sprite
 @onready var shape: CollisionShape2D = $shape
+@onready var merge_range: Area2D = $merge_range
 
 
 func get_radius():
@@ -45,10 +46,12 @@ func update_size():
 	sprite_mask.scale = current_scale * Vector2.ONE
 	sprite.frame = level - 1
 	shape.scale = current_scale * Vector2.ONE
+	merge_range.scale = current_scale * Vector2.ONE
+	mass = current_scale
 	
 	animate_size()
-	
-	
+
+
 func grow():
 	level += 1
 	age = 0
@@ -92,6 +95,6 @@ func _physics_process(delta):
 		update_size()
 		return
 
-	for body in get_colliding_bodies():
-		if body.is_in_group('fruit') and try_combine(body):
+	for body in merge_range.get_overlapping_bodies():
+		if body != self and body.is_in_group('fruit') and try_combine(body):
 			break

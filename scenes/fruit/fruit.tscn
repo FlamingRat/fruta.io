@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cxhucg6omu4pf"]
+[gd_scene load_steps=6 format=3 uid="uid://cxhucg6omu4pf"]
 
 [ext_resource type="Script" path="res://scenes/fruit/fruit.gd" id="1_qy8ei"]
 [ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="2_lmm3u"]
@@ -7,7 +7,10 @@
 bounce = 0.15
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vtjvt"]
-radius = 11.0
+radius = 10.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pahn5"]
+radius = 12.0
 
 [node name="fruit" type="RigidBody2D" groups=["fruit"]]
 collision_layer = 0
@@ -26,3 +29,10 @@ shape = SubResource("CircleShape2D_vtjvt")
 scale = Vector2(0.06, 0.06)
 texture = ExtResource("2_lmm3u")
 hframes = 11
+
+[node name="merge_range" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="merge_range"]
+shape = SubResource("CircleShape2D_pahn5")
