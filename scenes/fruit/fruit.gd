@@ -5,7 +5,7 @@ class_name Fruit
 signal combine(level: int)
 
 
-const MAX_SCALE = 8.3
+const MAX_SCALE = 8
 const EASING = 1.1
 const MAX_LEVEL: int = 11
 const TIME_TO_MATURE: float = 0.1
