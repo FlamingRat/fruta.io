@@ -1,14 +1,14 @@
-# fruta.io
+![fruta.io](./assets/banner.png)
 
 **fruta.io** is a physics-based matching puzzle game for Android devices. Drop fruit in a bucket to combine them! Can you get the highest score?
 
-## Web preview
+# Play on Android
+
+fruta.io is [available for Android devices on the Play Store](https://play.google.com/store/apps/details?id=com.LinsDev.frutaio)!
+
+# Web preview
 
 A web-based preview version is available on [itch.io](https://fizzydrinks.itch.io/frutaio).
-
-## Android version
-
-Coming soon on the Play Store! If you want internal testing access, email me at [frutaio@lins.dev](mailto:frutaio@lins.dev).
 
 # Development
 
