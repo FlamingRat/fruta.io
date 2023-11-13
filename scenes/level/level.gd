@@ -2,12 +2,14 @@ extends Node2D
 class_name LevelManager
 
 
-const SCORE_VERSION = '23.11.12.1'
+const SCORE_VERSION = '23.11.13.1'
 const GAME_OVER_TIMEOUT = 7.0
 const GAME_OVER_WARNING = 3.0
 const GAME_OVER_BOUNDARY_TIMER = 1.0
+const PITCH_SHIFT = pow(2, 1 / 12.0)
+const SCALE = [0, 2, 4, 5, 7, 9, 11, 12]
+const MAX_COMBO_MULTIPLIER = 8
 const HIGH_SCORE_FILE = "user://highscores.save"
-const COMBO_TIMEOUT_SECONDS = 1
 
 
 signal score_changed(score: int)
@@ -104,11 +106,6 @@ func _physics_process(delta: float):
 		tween.tween_property(combo_counter_label, 'scale', Vector2.ONE, 0.1)
 	else:
 		combo_counter_label.set_text('')
-		
-	if combo_timeout >= 0:
-		combo_timeout -= delta
-	else:
-		combo_counter = 0
 
 
 func update_score(new: int):
@@ -123,17 +120,18 @@ func _on_dispenser_fruit_dropped(level: int):
 	if is_game_over:
 		return
 
+	combo_counter = 0
 	score += int(pow(2, level - 1))
 	
 
 func _on_fruit_combined(level: int):
-	print('level {0} fruit merged'.format([level]))
 	if is_game_over:
 		return
 
-	combo_timeout = COMBO_TIMEOUT_SECONDS
-	combo_counter += 1
-	combine_audio.pitch_scale = 0.9 + 0.1 * combo_counter
+	if combo_counter < MAX_COMBO_MULTIPLIER:
+		combo_counter += 1
+	combine_audio.pitch_scale = 1 * pow(PITCH_SHIFT, SCALE[combo_counter - 1])
+	print('combo {0}, pitch {1}'.format([combo_counter, combine_audio.pitch_scale]))
 	combine_audio.play()
 
 	score += ceil(int(pow(2, level - 1)) * combo_counter)
