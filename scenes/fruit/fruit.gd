@@ -25,6 +25,9 @@ var radius: float = 0 : get = get_radius
 @onready var merge_range: Area2D = $merge_range
 
 
+@export var combo_star: PackedScene
+
+
 func get_radius():
 	return shape.shape.get_rect().size.x * shape.scale.x / 2
 
@@ -74,9 +77,23 @@ func try_combine(fruit: Fruit):
 	else:
 		lower = fruit
 		higher = self
+
+	lower.grow()
+	
+	for i in ceil((level - 1) * level_manager.combo_counter):
+		var star = combo_star.instantiate()
+		star.force_bonus = level_manager.combo_counter
+		get_tree().current_scene.add_child(star)
+		star.global_position = global_position
 	
 	higher.queue_free()
-	lower.grow()
+	
+	lower.global_position = Vector2(
+		(higher.global_position.x - lower.global_position.x) * 0.5 + \
+		lower.global_position.x,
+		lower.global_position.y,
+	)
+
 	return true
 
 

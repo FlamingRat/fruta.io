@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxhucg6omu4pf"]
+[gd_scene load_steps=7 format=3 uid="uid://cxhucg6omu4pf"]
 
 [ext_resource type="Script" path="res://scenes/fruit/fruit.gd" id="1_qy8ei"]
 [ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="2_lmm3u"]
+[ext_resource type="PackedScene" uid="uid://cg4ljcq73wxam" path="res://scenes/level/combo_star.tscn" id="2_vtdxe"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_f3k8k"]
 bounce = 0.15
@@ -20,6 +21,7 @@ max_contacts_reported = 255
 contact_monitor = true
 can_sleep = false
 script = ExtResource("1_qy8ei")
+combo_star = ExtResource("2_vtdxe")
 
 [node name="shape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_vtjvt")

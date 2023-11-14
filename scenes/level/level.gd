@@ -131,7 +131,6 @@ func _on_fruit_combined(level: int):
 	if combo_counter < MAX_COMBO_MULTIPLIER:
 		combo_counter += 1
 	combine_audio.pitch_scale = 1 * pow(PITCH_SHIFT, SCALE[combo_counter - 1])
-	print('combo {0}, pitch {1}'.format([combo_counter, combine_audio.pitch_scale]))
 	combine_audio.play()
 
 	score += ceil(int(pow(2, level - 1)) * combo_counter)
