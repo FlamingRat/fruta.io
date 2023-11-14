@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://oma2ed5pgtal"]
+[gd_scene load_steps=17 format=3 uid="uid://oma2ed5pgtal"]
 
 [ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c4wadspmxa024" path="res://scenes/dispenser/dispenser.tscn" id="2_qxix2"]
 [ext_resource type="Script" path="res://scenes/score/score.gd" id="4_hs868"]
 [ext_resource type="Script" path="res://scenes/score/high_score.gd" id="5_aovaq"]
+[ext_resource type="Texture2D" uid="uid://c8dskxkn3cvby" path="res://sprites/icons.png" id="5_iawld"]
 [ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://sounds/combine2.mp3" id="7_1u7sb"]
@@ -65,32 +66,71 @@ offset_right = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="high_score_icon" type="Control" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.0
+offset_top = 5.0
+offset_right = -155.0
+offset_bottom = 41.0
+grow_horizontal = 2
+
+[node name="icon" type="Sprite2D" parent="ui_root/top_bar/high_score_icon"]
+position = Vector2(18, 18)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_iawld")
+hframes = 2
+
 [node name="high_score" type="Label" parent="ui_root/top_bar"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_left = 42.0
+offset_right = -42.0
 offset_bottom = 47.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.25098, 0.25098, 0.25098, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
-text = "High score: 0"
+text = "100000"
 script = ExtResource("5_aovaq")
 
 [node name="score" type="Label" parent="ui_root/top_bar"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 26.0
+offset_left = 42.0
+offset_right = -42.0
+offset_bottom = 47.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
-text = "Score: 0"
+text = "1000"
 horizontal_alignment = 2
 script = ExtResource("4_hs868")
 
-[node name="TextureRect" type="TextureRect" parent="ui_root/top_bar"]
+[node name="score_icon" type="Control" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 154.0
+offset_top = 4.0
+offset_right = 190.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="icon" type="Sprite2D" parent="ui_root/top_bar/score_icon"]
+position = Vector2(18, 18)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_iawld")
+hframes = 2
+frame = 1
+
+[node name="progression" type="TextureRect" parent="ui_root/top_bar"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
