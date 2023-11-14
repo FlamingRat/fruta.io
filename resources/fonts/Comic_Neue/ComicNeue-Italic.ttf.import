@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://nhnngvr3j100"
-path="res://.godot/imported/ComicNeue-BoldItalic.ttf-e63c4fea0f40e353fa67f121d7c2e7ed.fontdata"
+uid="uid://xg5yq7x7nyhf"
+path="res://.godot/imported/ComicNeue-Italic.ttf-b9a2dcfeb99aa4aebdf45c89c3a03bff.fontdata"
 
 [deps]
 
-source_file="res://fonts/Comic_Neue/ComicNeue-BoldItalic.ttf"
-dest_files=["res://.godot/imported/ComicNeue-BoldItalic.ttf-e63c4fea0f40e353fa67f121d7c2e7ed.fontdata"]
+source_file="res://resources/fonts/Comic_Neue/ComicNeue-Italic.ttf"
+dest_files=["res://.godot/imported/ComicNeue-Italic.ttf-b9a2dcfeb99aa4aebdf45c89c3a03bff.fontdata"]
 
 [params]
 

@@ -9,10 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://c8dskxkn3cvby" path="res://sprites/icons.png" id="5_iawld"]
 [ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
-[ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://sounds/combine2.mp3" id="7_1u7sb"]
+[ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://resources/styles/label_font.tres" id="6_sfcy3"]
 [ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/level/click_mask.tscn" id="8_fha15"]
-[ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://themes/label_font.tres" id="9_k31yo"]
-[ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://sounds/bgm.mp3" id="11_dpg2t"]
+[ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://resources/sounds/combine2.mp3" id="12_barm0"]
+[ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://resources/sounds/bgm.mp3" id="13_w4n4b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikqpv"]
 content_margin_left = 5.0
@@ -72,7 +72,7 @@ offset_left = 42.0
 offset_right = -42.0
 offset_bottom = 47.0
 grow_horizontal = 2
-theme = ExtResource("9_k31yo")
+theme = ExtResource("6_sfcy3")
 theme_override_colors/font_color = Color(0.988235, 0.847059, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
@@ -89,7 +89,7 @@ offset_left = 42.0
 offset_right = -42.0
 offset_bottom = 47.0
 grow_horizontal = 2
-theme = ExtResource("9_k31yo")
+theme = ExtResource("6_sfcy3")
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
 text = "1000"
@@ -150,7 +150,7 @@ offset_bottom = -248.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(200, 40)
-theme = ExtResource("9_k31yo")
+theme = ExtResource("6_sfcy3")
 text = "COOL!"
 horizontal_alignment = 1
 
@@ -164,7 +164,7 @@ offset_top = 95.0
 offset_right = 20.0
 offset_bottom = 165.0
 grow_horizontal = 2
-theme = ExtResource("9_k31yo")
+theme = ExtResource("6_sfcy3")
 theme_override_colors/font_color = Color(0.545098, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 48
@@ -184,7 +184,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("9_k31yo")
+theme = ExtResource("6_sfcy3")
 
 [node name="ColorRect" type="ColorRect" parent="ui_root/game_over_screen"]
 layout_mode = 1
@@ -244,14 +244,14 @@ position = Vector2(0, 8)
 texture = ExtResource("6_odop2")
 
 [node name="combine_audio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("7_1u7sb")
+stream = ExtResource("12_barm0")
 max_polyphony = 11
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(201, 430)
 
 [node name="bgm" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("11_dpg2t")
+stream = ExtResource("13_w4n4b")
 volume_db = -4.069
 
 [connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]

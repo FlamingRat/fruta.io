@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_f80g0"]
 [ext_resource type="Texture2D" uid="uid://c4hug1rxgwgws" path="res://assets/logo.png" id="1_xub72"]
-[ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://themes/label_font.tres" id="2_t0xm7"]
+[ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://resources/styles/label_font.tres" id="2_61rvu"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -35,7 +35,7 @@ offset_bottom = 430.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(200, 430)
-theme = ExtResource("2_t0xm7")
+theme = ExtResource("2_61rvu")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
 layout_mode = 1
