@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://sounds/combine2.mp3" id="7_1u7sb"]
-[ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/click_mask.tscn" id="8_fha15"]
+[ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/level/click_mask.tscn" id="8_fha15"]
 [ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://sounds/bgm.mp3" id="11_dpg2t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikqpv"]

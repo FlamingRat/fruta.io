@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://n2wim102fk0t"]
 
-[ext_resource type="Script" path="res://scenes/click_mask.gd" id="1_jtm84"]
+[ext_resource type="Script" path="res://scenes/level/click_mask.gd" id="1_4d5t0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_301ae"]
 
@@ -20,4 +20,4 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_301ae")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_cbyfj")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_8vxue")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_4wale")
-script = ExtResource("1_jtm84")
+script = ExtResource("1_4d5t0")

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/menu/intro.gd" id="1_avwri"]
 [ext_resource type="Texture2D" uid="uid://sp1ddks8b0wo" path="res://assets/LogoWithText.png" id="1_lwb15"]
-[ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/click_mask.tscn" id="3_62jrv"]
+[ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/level/click_mask.tscn" id="3_62jrv"]
 
 [sub_resource type="Animation" id="Animation_gks54"]
 length = 0.001
