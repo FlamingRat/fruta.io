@@ -87,6 +87,9 @@ func animate_size():
 
 
 func _physics_process(delta):
+	if level_manager.is_game_over:
+		return
+	
 	if age < TIME_TO_MATURE:
 		age += delta
 	
