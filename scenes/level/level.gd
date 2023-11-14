@@ -10,6 +10,16 @@ const PITCH_SHIFT = pow(2, 1 / 12.0)
 const SCALE = [0, 2, 4, 5, 7, 9, 11, 12]
 const MAX_COMBO_MULTIPLIER = 8
 const HIGH_SCORE_FILE = "user://highscores.save"
+const COMBO_LABELS = [
+	'',
+	'',
+	'Juicy!',
+	'Fresh!',
+	'Crazy!',
+	'Fantastic!',
+	'Impossible!!',
+	'LEGENDARY!!!',
+]
 
 
 signal score_changed(score: int)
@@ -24,6 +34,7 @@ var is_game_over = false
 var high_score: int = 0
 var combo_counter: int = 0
 var combo_timeout: float = 0
+var combo_tween: Tween
 
 
 @onready var combine_audio: AudioStreamPlayer = $combine_audio
@@ -46,6 +57,8 @@ func update_high_score(new_score: int):
 
 
 func _ready():
+	animate_combo_text()
+
 	if FileAccess.file_exists(HIGH_SCORE_FILE):
 		var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.READ)
 		var data = fd.get_var(true)
@@ -98,14 +111,6 @@ func _physics_process(delta: float):
 			declare_game_over()
 	else:
 		reset_game_over_countdown()
-		
-	if combo_counter > 1:
-		combo_counter_label.set_text('x{0}!'.format([combo_counter]))
-		combo_counter_label.scale = Vector2.ZERO
-		var tween = create_tween()
-		tween.tween_property(combo_counter_label, 'scale', Vector2.ONE, 0.1)
-	else:
-		combo_counter_label.set_text('')
 
 
 func update_score(new: int):
@@ -121,8 +126,28 @@ func _on_dispenser_fruit_dropped(level: int):
 		return
 
 	combo_counter = 0
+	animate_combo_text()
+
 	score += int(pow(2, level - 1))
 	
+	
+func animate_combo_text():
+	combo_counter_label.set_text(COMBO_LABELS[combo_counter])
+	combo_counter_label.scale = Vector2.ZERO
+	
+	if !combo_tween:
+		combo_tween = create_tween()
+
+	if combo_tween.is_running():
+		combo_tween.stop()
+		combo_counter_label.scale = Vector2.ZERO
+
+	combo_tween = create_tween()
+	combo_tween.tween_property(combo_counter_label, 'scale', Vector2.ONE, 0.2)
+	combo_counter_label.add_theme_font_size_override(
+		"font_size", 30 + 2 * (combo_counter - 2)
+	)
+
 
 func _on_fruit_combined(level: int):
 	if is_game_over:
@@ -130,6 +155,8 @@ func _on_fruit_combined(level: int):
 
 	if combo_counter < MAX_COMBO_MULTIPLIER:
 		combo_counter += 1
+		animate_combo_text()
+
 	combine_audio.pitch_scale = 1 * pow(PITCH_SHIFT, SCALE[combo_counter - 1])
 	combine_audio.play()
 
