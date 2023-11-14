@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://oma2ed5pgtal"]
+[gd_scene load_steps=16 format=3 uid="uid://oma2ed5pgtal"]
 
 [ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://sounds/combine2.mp3" id="7_1u7sb"]
 [ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/click_mask.tscn" id="8_fha15"]
+[ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://sounds/bgm.mp3" id="11_dpg2t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikqpv"]
 content_margin_left = 5.0
@@ -222,6 +223,11 @@ max_polyphony = 11
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(201, 430)
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_dpg2t")
+volume_db = -4.069
+autoplay = true
 
 [connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
 [connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]
