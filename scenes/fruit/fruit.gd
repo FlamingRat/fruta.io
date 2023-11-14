@@ -11,9 +11,7 @@ const MAX_LEVEL: int = 11
 const TIME_TO_MATURE: float = 0.1
 
 
-var level_manager: LevelManager
-var level: int = 1
-var last_frame_level: int = 1
+var last_frame_level: int
 var age: float = 0
 var sprite_scale: Vector2
 var radius: float = 0 : get = get_radius
@@ -25,6 +23,8 @@ var radius: float = 0 : get = get_radius
 @onready var merge_range: Area2D = $merge_range
 
 
+@export var level_manager: LevelManager
+@export var level: int = 1
 @export var combo_star: PackedScene
 
 
@@ -35,6 +35,7 @@ func get_radius():
 func _ready():
 	combine.connect(level_manager._on_fruit_combined)
 	sprite_scale = sprite.scale
+	last_frame_level = level
 	update_size()
 
 
@@ -110,10 +111,12 @@ func _physics_process(delta):
 	if age < TIME_TO_MATURE:
 		age += delta
 	
+	merge_range.set_collision_layer_value(1, get_collision_layer_value(1))
+	merge_range.set_collision_mask_value(1, get_collision_mask_value(1))
+	
 	if level != last_frame_level:
 		last_frame_level = level
 		update_size()
-		return
 
 	for body in merge_range.get_overlapping_bodies():
 		if body != self and body.is_in_group('fruit') and try_combine(body):

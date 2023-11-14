@@ -17,6 +17,7 @@ const COMBO_LABELS = [
 	'Fresh!',
 	'Crazy!',
 	'Fantastic!',
+	'Amazing!',
 	'Impossible!!',
 	'LEGENDARY!!!',
 ]

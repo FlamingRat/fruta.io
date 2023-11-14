@@ -49,6 +49,8 @@ func get_new_fruit():
 	)
 
 	next_fruit = fruitFactory.instantiate()
+	next_fruit.set_collision_mask_value(1, false)
+	next_fruit.set_collision_layer_value(1, false)
 	next_fruit.level = randi_range(1, max_level)
 	next_fruit.level_manager = level_manager
 	add_child(next_fruit)
@@ -73,8 +75,6 @@ func drop_fruit():
 	fruit_dropped.emit(current_fruit.level)
 	current_fruit.set_collision_mask_value(1, true)
 	current_fruit.set_collision_layer_value(1, true)
-	current_fruit.merge_range.set_collision_layer_value(1, true)
-	current_fruit.merge_range.set_collision_mask_value(1, true)
 	current_fruit.freeze = false
 	current_fruit = null
 	promote_fruit()

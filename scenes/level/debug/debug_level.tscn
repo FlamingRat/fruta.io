@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bekcdjsjqpmd1"]
+
+[ext_resource type="PackedScene" uid="uid://oma2ed5pgtal" path="res://scenes/level/level.tscn" id="1_q170l"]
+[ext_resource type="PackedScene" uid="uid://cxhucg6omu4pf" path="res://scenes/fruit/fruit.tscn" id="2_8u4wa"]
+
+[node name="level" instance=ExtResource("1_q170l")]
+
+[node name="fruit3" parent="." index="7" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(80, 546)
+level_manager = NodePath("..")
+level = 3
+
+[node name="fruit2" parent="." index="8" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(64, 485)
+level_manager = NodePath("..")
+level = 2
+
+[node name="fruit" parent="." index="9" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(57, 301)
+level_manager = NodePath("..")
+
+[node name="fruit4" parent="." index="10" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(102, 590)
+level_manager = NodePath("..")
+level = 4
+
+[node name="fruit5" parent="." index="11" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(108, 639)
+level_manager = NodePath("..")
+level = 5
+
+[node name="fruit6" parent="." index="12" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(141, 657)
+level_manager = NodePath("..")
+level = 6
+
+[node name="fruit7" parent="." index="13" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(173, 639)
+level_manager = NodePath("..")
+level = 7
+
+[node name="fruit8" parent="." index="14" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(189, 673)
+level_manager = NodePath("..")
+level = 8
+
+[node name="fruit1" parent="." index="15" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(58, 398)
+level_manager = NodePath("..")

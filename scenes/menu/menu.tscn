@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/menu/menu.gd" id="1_f80g0"]
 [ext_resource type="Texture2D" uid="uid://c4hug1rxgwgws" path="res://assets/logo.png" id="1_xub72"]
-[ext_resource type="StyleBox" uid="uid://7p7uno4sy3vt" path="res://resources/styles/menu_button.tres" id="3_hg1oe"]
+[ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://themes/label_font.tres" id="2_t0xm7"]
 
 [node name="menu" type="Control"]
 layout_mode = 3
@@ -35,6 +35,7 @@ offset_bottom = 430.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(200, 430)
+theme = ExtResource("2_t0xm7")
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -63,16 +64,7 @@ offset_right = 47.5
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/font_color = Color(1, 0.513726, 0, 1)
-theme_override_colors/font_pressed_color = Color(1, 0.513726, 0, 1)
-theme_override_colors/font_hover_color = Color(1, 0.513726, 0, 1)
-theme_override_colors/font_focus_color = Color(1, 0.513726, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(1, 0.513726, 0, 1)
 theme_override_font_sizes/font_size = 36
-theme_override_styles/normal = ExtResource("3_hg1oe")
-theme_override_styles/hover = ExtResource("3_hg1oe")
-theme_override_styles/pressed = ExtResource("3_hg1oe")
-theme_override_styles/focus = ExtResource("3_hg1oe")
 text = "NEW GAME"
 
 [connection signal="pressed" from="CanvasLayer/Control/Button" to="." method="_on_button_pressed"]
