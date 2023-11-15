@@ -1,3 +1,4 @@
+@tool
 extends RigidBody2D
 class_name Fruit
 
@@ -33,7 +34,12 @@ func get_radius():
 
 
 func _ready():
-	combine.connect(level_manager._on_fruit_combined)
+	if Engine.is_editor_hint():
+		return
+
+	if level_manager:
+		combine.connect(level_manager._on_fruit_combined)
+
 	sprite_scale = sprite.scale
 	last_frame_level = level
 	update_size()
@@ -53,7 +59,8 @@ func update_size():
 	merge_range.scale = current_scale * Vector2.ONE
 	mass = current_scale
 	
-	animate_size()
+	if not Engine.is_editor_hint():
+		animate_size()
 
 
 func grow():
@@ -104,8 +111,16 @@ func animate_size():
 	tween.tween_property(sprite, "scale", sprite_scale, 0.2)
 
 
+func _process(delta):
+	if Engine.is_editor_hint():
+		update_size()
+
+
 func _physics_process(delta):
-	if level_manager.is_game_over:
+	if Engine.is_editor_hint():
+		return
+	
+	if level_manager and level_manager.is_game_over:
 		return
 	
 	if age < TIME_TO_MATURE:
@@ -119,5 +134,6 @@ func _physics_process(delta):
 		update_size()
 
 	for body in merge_range.get_overlapping_bodies():
-		if body != self and body.is_in_group('fruit') and try_combine(body):
+		var is_fruit = body != self and body.is_in_group('fruit')
+		if is_fruit and try_combine(body):
 			break
