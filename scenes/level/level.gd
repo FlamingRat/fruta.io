@@ -107,6 +107,12 @@ func declare_game_over():
 	is_game_over = true
 	$ui_root/game_over_screen.visible = true
 	game_over.emit()
+	
+	if high_score <= score:
+		achievements.leaderboard_submit(
+			AchievementManager.LEADERBOARD_HIGH_SCORES,
+			score,
+		)
 
 
 func _physics_process(delta: float):

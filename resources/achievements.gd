@@ -2,6 +2,8 @@ extends Resource
 class_name AchievementManager
 
 
+const LEADERBOARD_HIGH_SCORES = "CgkIrZ_72roEEAIQAw"
+const LEADERBOARD_WATERMELONS = "CgkIrZ_72roEEAIQBA"  # TODO: Implement global counter
 const FIRST_MERGE = "CgkIrZ_72roEEAIQBg"
 const THOUSAND_COMBOS = "CgkIrZ_72roEEAIQBw"
 const LEGENDARY = "CgkIrZ_72roEEAIQAQ"
@@ -62,6 +64,15 @@ func increment(achievement_id: String, step: int):
 
 	play_games_services.incrementAchievement(achievement_id, step)
 	
+
+func leaderboard_submit(leaderboard_id: String, score: float):
+	print("Submitted for leaderboard ", leaderboard_id, ": ", score)
+
+	if not ready:
+		return
+		
+	play_games_services.submitLeaderBoardScore(leaderboard_id, score)
+
 
 func is_ready() -> bool:
 	return ready
