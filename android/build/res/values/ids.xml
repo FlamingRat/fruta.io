@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="leaderboard_highscores">CgkIrZ_72roEEAIQAw</string>
+    <string name="leaderboard_watermelons">CgkIrZ_72roEEAIQBA</string>
+    
+    <string name="achievement_FIRST_MERGE">CgkIrZ_72roEEAIQBg</string>
+    <string name="achivement_THOUSAND_COMBOS">CgkIrZ_72roEEAIQBw</string>
+    <string name="achivement_LEGENDARY">CgkIrZ_72roEEAIQAQ</string>
+    <string name="achivement_MAX_FRUIT">CgkIrZ_72roEEAIQAg</string>
+    <string name="achivement_PANIC_MODE">CgkIrZ_72roEEAIQBQ</string>
+    <string name="achivement_TOO_MUCH_EDGE">CgkIrZ_72roEEAIQCA</string>
+</resources>

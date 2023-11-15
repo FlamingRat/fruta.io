@@ -38,3 +38,4 @@ build/libs
 build/res
 build/assetPacks
 !build/res/vales/Strings.xml
+!build/res/vales/ids.xml
