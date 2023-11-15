@@ -72,6 +72,10 @@ func leaderboard_submit(leaderboard_id: String, score: float):
 		return
 		
 	play_games_services.submitLeaderBoardScore(leaderboard_id, score)
+	
+	
+func view_leaderboard(leaderboard_id: String):
+	play_games_services.showLeaderBoard(leaderboard_id)
 
 
 func is_ready() -> bool:
