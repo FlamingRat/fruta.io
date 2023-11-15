@@ -31,7 +31,10 @@ google-services.json
 # Android Profiling
 *.hprof
 
-build/build/*
-build/assets/*
-build/src/*
-build/res/*
+build/build
+build/assets
+build/src
+build/libs
+build/res
+build/assetPacks
+!build/res/vales/Strings.xml
