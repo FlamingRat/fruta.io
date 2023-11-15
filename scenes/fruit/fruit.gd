@@ -111,7 +111,7 @@ func animate_size():
 	tween.tween_property(sprite, "scale", sprite_scale, 0.2)
 
 
-func _process(delta):
+func _process(_delta):
 	if Engine.is_editor_hint():
 		update_size()
 
