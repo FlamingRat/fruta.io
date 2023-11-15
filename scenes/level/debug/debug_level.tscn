@@ -5,45 +5,54 @@
 
 [node name="level" instance=ExtResource("1_q170l")]
 
-[node name="fruit3" parent="." index="7" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+[node name="fruit3" parent="." index="7" instance=ExtResource("2_8u4wa")]
 position = Vector2(80, 546)
-level_manager = NodePath("..")
 level = 3
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit2" parent="." index="8" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit2" parent="." index="8" instance=ExtResource("2_8u4wa")]
 position = Vector2(64, 485)
-level_manager = NodePath("..")
 level = 2
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit" parent="." index="9" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit" parent="." index="9" instance=ExtResource("2_8u4wa")]
 position = Vector2(57, 301)
-level_manager = NodePath("..")
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit4" parent="." index="10" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit4" parent="." index="10" instance=ExtResource("2_8u4wa")]
 position = Vector2(102, 590)
-level_manager = NodePath("..")
 level = 4
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit5" parent="." index="11" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit5" parent="." index="11" instance=ExtResource("2_8u4wa")]
 position = Vector2(108, 639)
-level_manager = NodePath("..")
 level = 5
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit6" parent="." index="12" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit6" parent="." index="12" instance=ExtResource("2_8u4wa")]
 position = Vector2(141, 657)
-level_manager = NodePath("..")
 level = 6
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit7" parent="." index="13" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit7" parent="." index="13" instance=ExtResource("2_8u4wa")]
 position = Vector2(173, 639)
-level_manager = NodePath("..")
 level = 7
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit8" parent="." index="14" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit8" parent="." index="14" instance=ExtResource("2_8u4wa")]
 position = Vector2(189, 673)
-level_manager = NodePath("..")
 level = 8
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
 
-[node name="fruit1" parent="." index="15" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+
+[node name="fruit1" parent="." index="15" instance=ExtResource("2_8u4wa")]
 position = Vector2(58, 398)
-level_manager = NodePath("..")
+level_manager = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://scenes/level/level.gd"))
+

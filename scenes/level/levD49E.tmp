@@ -1,0 +1,265 @@
+[gd_scene load_steps=16 format=3 uid="uid://oma2ed5pgtal"]
+
+[ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
+[ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
+[ext_resource type="PackedScene" uid="uid://cxhucg6omu4pf" path="res://scenes/fruit/fruit.tscn" id="2_jp5ch"]
+[ext_resource type="PackedScene" uid="uid://c4wadspmxa024" path="res://scenes/dispenser/dispenser.tscn" id="2_qxix2"]
+[ext_resource type="Script" path="res://scenes/score/score.gd" id="4_hs868"]
+[ext_resource type="Script" path="res://scenes/score/high_score.gd" id="5_aovaq"]
+[ext_resource type="Texture2D" uid="uid://c8dskxkn3cvby" path="res://sprites/icons.png" id="5_iawld"]
+[ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
+[ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
+[ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://resources/styles/label_font.tres" id="6_sfcy3"]
+[ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/level/click_mask.tscn" id="8_fha15"]
+[ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://resources/sounds/combine2.mp3" id="12_barm0"]
+[ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://resources/sounds/bgm.mp3" id="13_w4n4b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikqpv"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vg7s8"]
+size = Vector2(416, 12)
+
+[node name="level" type="Node2D"]
+script = ExtResource("1_a8qfb")
+
+[node name="bucket" parent="." instance=ExtResource("1_0ibts")]
+
+[node name="dispenser" parent="." node_paths=PackedStringArray("level_manager", "bucket") instance=ExtResource("2_qxix2")]
+position = Vector2(196, 308)
+fruitFactory = ExtResource("2_jp5ch")
+level_manager = NodePath("..")
+bucket = NodePath("../bucket")
+
+[node name="ui_root" type="CanvasLayer" parent="."]
+
+[node name="top_bar" type="Control" parent="ui_root"]
+layout_mode = 3
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_right = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="high_score_icon" type="Control" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -191.0
+offset_top = 5.0
+offset_right = -155.0
+offset_bottom = 41.0
+grow_horizontal = 2
+
+[node name="icon" type="Sprite2D" parent="ui_root/top_bar/high_score_icon"]
+position = Vector2(18, 18)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_iawld")
+hframes = 2
+
+[node name="high_score" type="Label" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 42.0
+offset_right = -42.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme = ExtResource("6_sfcy3")
+theme_override_colors/font_color = Color(0.988235, 0.847059, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
+text = "100000"
+vertical_alignment = 1
+script = ExtResource("5_aovaq")
+
+[node name="score" type="Label" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 42.0
+offset_right = -42.0
+offset_bottom = 47.0
+grow_horizontal = 2
+theme = ExtResource("6_sfcy3")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
+text = "1000"
+horizontal_alignment = 2
+vertical_alignment = 1
+script = ExtResource("4_hs868")
+
+[node name="score_icon" type="Control" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 154.0
+offset_top = 4.0
+offset_right = 190.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="icon" type="Sprite2D" parent="ui_root/top_bar/score_icon"]
+position = Vector2(18, 18)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("5_iawld")
+hframes = 2
+frame = 1
+
+[node name="progression" type="TextureRect" parent="ui_root/top_bar"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 6.0
+offset_top = 50.0
+offset_right = -6.0
+offset_bottom = 86.0
+grow_horizontal = 2
+texture = ExtResource("6_hv4x0")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="main_ui" type="Control" parent="ui_root"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="combo_counter" type="Label" parent="ui_root/main_ui"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -293.0
+offset_right = 184.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(200, 40)
+theme = ExtResource("6_sfcy3")
+text = "COOL!"
+horizontal_alignment = 1
+
+[node name="game_over_timer" type="Label" parent="ui_root/main_ui"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 95.0
+offset_right = 20.0
+offset_bottom = 165.0
+grow_horizontal = 2
+theme = ExtResource("6_sfcy3")
+theme_override_colors/font_color = Color(0.545098, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 48
+text = "5"
+horizontal_alignment = 1
+
+[node name="input_mask" parent="ui_root/main_ui" instance=ExtResource("8_fha15")]
+layout_mode = 1
+offset_top = 100.0
+offset_bottom = -15.0
+
+[node name="game_over_screen" type="Control" parent="ui_root"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_sfcy3")
+
+[node name="ColorRect" type="ColorRect" parent="ui_root/game_over_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.862745)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui_root/game_over_screen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_right = -93.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="game_over_message" type="Label" parent="ui_root/game_over_screen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
+text = "Game Over!"
+horizontal_alignment = 1
+
+[node name="score" type="Label" parent="ui_root/game_over_screen/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ikqpv")
+text = "Score: 0"
+horizontal_alignment = 1
+script = ExtResource("4_hs868")
+prefix = "Score: "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ui_root/game_over_screen/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="new_game" type="MenuButton" parent="ui_root/game_over_screen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+toggle_mode = false
+action_mode = 1
+text = "NEW GAME"
+flat = false
+
+[node name="game_over_boundary" type="Area2D" parent="."]
+position = Vector2(200, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="game_over_boundary"]
+shape = SubResource("RectangleShape2D_vg7s8")
+
+[node name="sprite" type="Sprite2D" parent="game_over_boundary"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, 8)
+texture = ExtResource("6_odop2")
+
+[node name="combine_audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_barm0")
+max_polyphony = 11
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(201, 430)
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_w4n4b")
+volume_db = -4.069
+
+[connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
+[connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]
+[connection signal="score_changed" from="." to="ui_root/top_bar/score" method="_on_level_score_changed"]
+[connection signal="score_changed" from="." to="ui_root/game_over_screen/VBoxContainer/score" method="_on_level_score_changed"]
+[connection signal="fruit_dropped" from="dispenser" to="." method="_on_dispenser_fruit_dropped"]
+[connection signal="click_mask_pressed" from="ui_root/main_ui/input_mask" to="dispenser" method="_on_input_mask_click_mask_pressed"]
+[connection signal="pressed" from="ui_root/game_over_screen/VBoxContainer/HBoxContainer/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="body_entered" from="game_over_boundary" to="." method="_on_game_over_boundary_body_entered"]
+[connection signal="body_exited" from="game_over_boundary" to="." method="_on_game_over_boundary_body_exited"]
