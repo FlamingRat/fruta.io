@@ -171,7 +171,7 @@ func _on_fruit_combined(level: int):
 		combo_counter += 1
 		animate_combo_text()
 		
-	if combo_counter > 1:
+	if combo_counter == 2:
 		achievements.increment(AchievementManager.THOUSAND_COMBOS, 1)
 		
 	if combo_counter == MAX_COMBO_MULTIPLIER:
