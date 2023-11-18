@@ -38,6 +38,7 @@ var combo_counter: int = 0
 var combo_timeout: float = 0
 var combo_tween: Tween
 var achievement_cube_counter: int = 0
+var heartbreaker_counter: int = 0
 
 
 @onready var combine_audio: AudioStreamPlayer = $combine_audio
@@ -172,7 +173,8 @@ func _on_fruit_combined(level: int):
 		animate_combo_text()
 		
 	if combo_counter == 2:
-		achievements.increment(AchievementManager.THOUSAND_COMBOS, 1)
+		achievements.increment(AchievementManager.CHAIN_REACTION, 1)
+		achievements.increment(AchievementManager.CHAIN_REACTION_II, 1)
 		
 	if combo_counter == MAX_COMBO_MULTIPLIER:
 		achievements.unlock(AchievementManager.LEGENDARY)
@@ -181,15 +183,23 @@ func _on_fruit_combined(level: int):
 			achievements.unlock(
 				AchievementManager.SO_MANY_STARS,
 			)
+			
+	if level == 5:
+		heartbreaker_counter += 1
+		
+		if heartbreaker_counter == 6:
+			achievements.unlock(AchievementManager.HEARTBREAKER)
+	else:
+		heartbreaker_counter = 0
 
 	if level == 7:
 		achievement_cube_counter += 1
 		
+		if achievement_cube_counter >= 4:
+			achievements.unlock(AchievementManager.TOO_MUCH_EDGE)
 	if level == 8:
 		achievement_cube_counter -= 1
 		
-	if achievement_cube_counter >= 4:
-		achievements.unlock(AchievementManager.TOO_MUCH_EDGE)
 		
 	if level == Fruit.MAX_LEVEL:
 		achievements.unlock(AchievementManager.MAX_FRUIT)

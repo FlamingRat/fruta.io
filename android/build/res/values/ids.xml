@@ -9,14 +9,18 @@
   <string name="achievement_together_we_are_strong" translatable="false">CgkIrZ_72roEEAIQBg</string>
   <!--achievement Chain Reaction-->
   <string name="achievement_chain_reaction" translatable="false">CgkIrZ_72roEEAIQBw</string>
+  <!--achievement Chain Reaction II-->
+  <string name="achievement_chain_reaction_ii" translatable="false">CgkIrZ_72roEEAIQCg</string>
+  <!--achievement Panic Mode-->
+  <string name="achievement_panic_mode" translatable="false">CgkIrZ_72roEEAIQBQ</string>
+  <!--achievement Heartbreaker-->
+  <string name="achievement_heartbreaker" translatable="false">CgkIrZ_72roEEAIQCw</string>
+  <!--achievement Too Much Edge-->
+  <string name="achievement_too_much_edge" translatable="false">CgkIrZ_72roEEAIQCA</string>
   <!--achievement Legendary Merger-->
   <string name="achievement_legendary_merger" translatable="false">CgkIrZ_72roEEAIQAQ</string>
   <!--achievement Is that a melon?-->
   <string name="achievement_is_that_a_melon" translatable="false">CgkIrZ_72roEEAIQAg</string>
-  <!--achievement Panic Mode-->
-  <string name="achievement_panic_mode" translatable="false">CgkIrZ_72roEEAIQBQ</string>
-  <!--achievement Too Much Edge-->
-  <string name="achievement_too_much_edge" translatable="false">CgkIrZ_72roEEAIQCA</string>
   <!--achievement So Many Stars-->
   <string name="achievement_so_many_stars" translatable="false">CgkIrZ_72roEEAIQCQ</string>
   <!--leaderboard High Scores-->

@@ -5,11 +5,13 @@ class_name AchievementManager
 const LEADERBOARD_HIGH_SCORES = "CgkIrZ_72roEEAIQAw"
 const LEADERBOARD_WATERMELONS = "CgkIrZ_72roEEAIQBA"  # TODO: Implement global counter
 const FIRST_MERGE = "CgkIrZ_72roEEAIQBg"
-const THOUSAND_COMBOS = "CgkIrZ_72roEEAIQBw"
+const CHAIN_REACTION = "CgkIrZ_72roEEAIQBw"
+const CHAIN_REACTION_II = "CgkIrZ_72roEEAIQCg"
 const LEGENDARY = "CgkIrZ_72roEEAIQAQ"
 const MAX_FRUIT = "CgkIrZ_72roEEAIQAg"
 const PANIC_MODE = "CgkIrZ_72roEEAIQBQ"
 const TOO_MUCH_EDGE = "CgkIrZ_72roEEAIQCA"
+const HEARTBREAKER = "CgkIrZ_72roEEAIQCw"
 const SO_MANY_STARS = "CgkIrZ_72roEEAIQCQ"
 
 
