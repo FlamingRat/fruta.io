@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://oma2ed5pgtal"]
+[gd_scene load_steps=18 format=3 uid="uid://oma2ed5pgtal"]
 
 [ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
 [ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://resources/styles/label_font.tres" id="6_sfcy3"]
 [ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/level/click_mask.tscn" id="8_fha15"]
+[ext_resource type="Script" path="res://scenes/level/combo_counter.gd" id="10_8wqjs"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://resources/sounds/combine2.mp3" id="12_barm0"]
 [ext_resource type="Script" path="res://scenes/level/combine_audio.gd" id="13_7yoi7"]
 [ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://resources/sounds/bgm.mp3" id="13_w4n4b"]
@@ -154,6 +155,7 @@ pivot_offset = Vector2(200, 40)
 theme = ExtResource("6_sfcy3")
 text = "COOL!"
 horizontal_alignment = 1
+script = ExtResource("10_8wqjs")
 
 [node name="game_over_timer" type="Label" parent="ui_root/main_ui"]
 layout_mode = 1
@@ -256,7 +258,9 @@ position = Vector2(201, 430)
 stream = ExtResource("13_w4n4b")
 volume_db = -4.069
 
+[connection signal="combo_progress" from="." to="ui_root/main_ui/combo_counter" method="_on_level_combo_progress"]
 [connection signal="combo_progress" from="." to="combine_audio" method="_on_level_combo_progress"]
+[connection signal="combo_reset" from="." to="ui_root/main_ui/combo_counter" method="_on_level_combo_reset"]
 [connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
 [connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]
 [connection signal="score_changed" from="." to="ui_root/top_bar/score" method="_on_level_score_changed"]

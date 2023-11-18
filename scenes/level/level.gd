@@ -9,40 +9,26 @@ const GAME_OVER_WARNING = 3.0
 const GAME_OVER_BOUNDARY_TIMER = 1.0
 const MAX_COMBO_MULTIPLIER = 8
 const HIGH_SCORE_FILE = "user://highscores.save"
-const COMBO_LABELS = [
-	'',
-	'',
-	'Juicy!',
-	'Fresh!',
-	'Crazy!',
-	'Fantastic!',
-	'Amazing!',
-	'Impossible!!',
-	'LEGENDARY!!!',
-]
 
 
 signal score_changed(score: int)
 signal high_score_updated(score: int)
 signal game_over
-signal combo_progress(combo_counter: int)
+signal combo_progress(combo_counter: int, fruit_level: int)
+signal combo_reset
 
 
 var score: int = 0 : set = update_score
 var fruit_counter: int = 0
+var combo_counter: int = 0
 var game_over_timer: float = 0
 var is_game_over = false
 var high_score: int = 0
-var combo_counter: int = 0
-var combo_timeout: float = 0
-var combo_tween: Tween
 var achievement_cube_counter: int = 0
 var heartbreaker_counter: int = 0
 
 
-@onready var high_score_label: Label = $ui_root/top_bar/high_score
 @onready var game_over_timer_label: Label = $ui_root/main_ui/game_over_timer
-@onready var combo_counter_label: Label = $ui_root/main_ui/combo_counter
 
 
 func update_high_score(new_score: int):
@@ -59,8 +45,6 @@ func update_high_score(new_score: int):
 
 
 func _ready():
-	animate_combo_text()
-
 	if FileAccess.file_exists(HIGH_SCORE_FILE):
 		var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.READ)
 		var data = fd.get_var(true)
@@ -136,28 +120,10 @@ func _on_dispenser_fruit_dropped(level: int):
 	if is_game_over:
 		return
 
+	combo_reset.emit()
 	combo_counter = 0
-	animate_combo_text()
 
 	score += int(pow(2, level - 1))
-	
-	
-func animate_combo_text():
-	combo_counter_label.set_text(COMBO_LABELS[combo_counter])
-	combo_counter_label.scale = Vector2.ZERO
-	
-	if !combo_tween:
-		combo_tween = create_tween()
-
-	if combo_tween.is_running():
-		combo_tween.stop()
-		combo_counter_label.scale = Vector2.ZERO
-
-	combo_tween = create_tween()
-	combo_tween.tween_property(combo_counter_label, 'scale', Vector2.ONE, 0.2)
-	combo_counter_label.add_theme_font_size_override(
-		"font_size", 30 + 2 * (combo_counter - 2)
-	)
 
 
 func _on_fruit_combined(level: int):
@@ -166,22 +132,6 @@ func _on_fruit_combined(level: int):
 		
 	achievements.unlock(AchievementManager.FIRST_MERGE)
 
-	if combo_counter < MAX_COMBO_MULTIPLIER:
-		combo_counter += 1
-		animate_combo_text()
-		
-	if combo_counter == 2:
-		achievements.increment(AchievementManager.CHAIN_REACTION, 1)
-		achievements.increment(AchievementManager.CHAIN_REACTION_II, 1)
-		
-	if combo_counter == MAX_COMBO_MULTIPLIER:
-		achievements.unlock(AchievementManager.LEGENDARY)
-		
-		if level == 11:
-			achievements.unlock(
-				AchievementManager.SO_MANY_STARS,
-			)
-			
 	if level == 5:
 		heartbreaker_counter += 1
 		
@@ -198,11 +148,11 @@ func _on_fruit_combined(level: int):
 	if level == 8:
 		achievement_cube_counter -= 1
 		
-		
 	if level == Fruit.MAX_LEVEL:
 		achievements.unlock(AchievementManager.MAX_FRUIT)
 
-	combo_progress.emit(combo_counter)
+	combo_counter += 1
+	combo_progress.emit(combo_counter, level)
 
 	score += ceil(int(pow(2, level - 1)) * combo_counter)
 
