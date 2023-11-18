@@ -224,16 +224,16 @@ horizontal_alignment = 1
 script = ExtResource("4_hs868")
 prefix = "Score: "
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ui_root/game_over_screen/VBoxContainer"]
-layout_mode = 2
-alignment = 1
-
-[node name="new_game" type="MenuButton" parent="ui_root/game_over_screen/VBoxContainer/HBoxContainer"]
+[node name="new_game" type="MenuButton" parent="ui_root/game_over_screen/VBoxContainer"]
 layout_mode = 2
 toggle_mode = false
 action_mode = 1
 text = "NEW GAME"
 flat = false
+
+[node name="main_menu" type="Button" parent="ui_root/game_over_screen/VBoxContainer"]
+layout_mode = 2
+text = "MAIN MENU"
 
 [node name="game_over_boundary" type="Area2D" parent="."]
 position = Vector2(200, 380)
@@ -267,6 +267,7 @@ volume_db = -4.069
 [connection signal="score_changed" from="." to="ui_root/game_over_screen/VBoxContainer/score" method="_on_level_score_changed"]
 [connection signal="fruit_dropped" from="dispenser" to="." method="_on_dispenser_fruit_dropped"]
 [connection signal="click_mask_pressed" from="ui_root/main_ui/input_mask" to="dispenser" method="_on_input_mask_click_mask_pressed"]
-[connection signal="pressed" from="ui_root/game_over_screen/VBoxContainer/HBoxContainer/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="ui_root/game_over_screen/VBoxContainer/new_game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="ui_root/game_over_screen/VBoxContainer/main_menu" to="." method="_on_main_menu_pressed"]
 [connection signal="body_entered" from="game_over_boundary" to="." method="_on_game_over_boundary_body_entered"]
 [connection signal="body_exited" from="game_over_boundary" to="." method="_on_game_over_boundary_body_exited"]

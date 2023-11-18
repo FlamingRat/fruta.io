@@ -57,7 +57,6 @@ alignment = 1
 
 [node name="NewGame" type="Button" parent="CanvasLayer/Control/vbox/new_game_container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
 text = "NEW GAME"
 
 [node name="leaderboards_container" type="HBoxContainer" parent="CanvasLayer/Control/vbox"]
@@ -66,7 +65,6 @@ alignment = 1
 
 [node name="Leaderboards" type="Button" parent="CanvasLayer/Control/vbox/leaderboards_container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
 text = "LEADERBOARDS"
 
 [connection signal="pressed" from="CanvasLayer/Control/vbox/new_game_container/NewGame" to="." method="_on_button_pressed"]

@@ -21,6 +21,7 @@ corner_radius_bottom_left = 2
 [resource]
 default_font = ExtResource("1_12xkv")
 Button/colors/font_color = Color(0.445313, 0.0820313, 0.0820313, 1)
+Button/font_sizes/font_size = 36
 Button/styles/normal = SubResource("StyleBoxFlat_q47i6")
 Label/colors/font_color = Color(1, 1, 1, 1)
 Label/colors/font_outline_color = Color(0.4, 0, 0, 1)

@@ -169,3 +169,7 @@ func _on_game_over_boundary_body_exited(body):
 
 func _on_new_game_pressed():
 	get_tree().reload_current_scene()
+
+
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file("res://scenes/menu/menu.tscn")
