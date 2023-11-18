@@ -10,6 +10,7 @@ const LEGENDARY = "CgkIrZ_72roEEAIQAQ"
 const MAX_FRUIT = "CgkIrZ_72roEEAIQAg"
 const PANIC_MODE = "CgkIrZ_72roEEAIQBQ"
 const TOO_MUCH_EDGE = "CgkIrZ_72roEEAIQCA"
+const SO_MANY_STARS = "CgkIrZ_72roEEAIQCQ"
 
 
 var play_games_services

@@ -177,6 +177,11 @@ func _on_fruit_combined(level: int):
 	if combo_counter == MAX_COMBO_MULTIPLIER:
 		achievements.unlock(AchievementManager.LEGENDARY)
 		
+		if level == 11:
+			achievements.unlock(
+				AchievementManager.SO_MANY_STARS,
+			)
+
 	if level == 7:
 		achievement_cube_counter += 1
 		
