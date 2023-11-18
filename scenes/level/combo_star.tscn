@@ -14,7 +14,7 @@ script = ExtResource("1_yaltc")
 [node name="sprite" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_58u1h")
-hframes = 2
+hframes = 4
 frame = 1
 
 [node name="shape" type="CollisionShape2D" parent="."]
