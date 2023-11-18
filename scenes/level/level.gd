@@ -7,8 +7,6 @@ const SCORE_VERSION = '23.11.13.1'
 const GAME_OVER_TIMEOUT = 7.0
 const GAME_OVER_WARNING = 3.0
 const GAME_OVER_BOUNDARY_TIMER = 1.0
-const PITCH_SHIFT = pow(2, 1 / 12.0)
-const SCALE = [0, 2, 4, 5, 7, 9, 11, 12]
 const MAX_COMBO_MULTIPLIER = 8
 const HIGH_SCORE_FILE = "user://highscores.save"
 const COMBO_LABELS = [
@@ -27,6 +25,7 @@ const COMBO_LABELS = [
 signal score_changed(score: int)
 signal high_score_updated(score: int)
 signal game_over
+signal combo_progress(combo_counter: int)
 
 
 var score: int = 0 : set = update_score
@@ -41,7 +40,6 @@ var achievement_cube_counter: int = 0
 var heartbreaker_counter: int = 0
 
 
-@onready var combine_audio: AudioStreamPlayer = $combine_audio
 @onready var high_score_label: Label = $ui_root/top_bar/high_score
 @onready var game_over_timer_label: Label = $ui_root/main_ui/game_over_timer
 @onready var combo_counter_label: Label = $ui_root/main_ui/combo_counter
@@ -204,8 +202,7 @@ func _on_fruit_combined(level: int):
 	if level == Fruit.MAX_LEVEL:
 		achievements.unlock(AchievementManager.MAX_FRUIT)
 
-	combine_audio.pitch_scale = 1 * pow(PITCH_SHIFT, SCALE[combo_counter - 1])
-	combine_audio.play()
+	combo_progress.emit(combo_counter)
 
 	score += ceil(int(pow(2, level - 1)) * combo_counter)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://oma2ed5pgtal"]
+[gd_scene load_steps=17 format=3 uid="uid://oma2ed5pgtal"]
 
 [ext_resource type="PackedScene" uid="uid://debguep6bcxdf" path="res://scenes/bucket/bucket.tscn" id="1_0ibts"]
 [ext_resource type="Script" path="res://scenes/level/level.gd" id="1_a8qfb"]
@@ -12,6 +12,7 @@
 [ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://resources/styles/label_font.tres" id="6_sfcy3"]
 [ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/level/click_mask.tscn" id="8_fha15"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://resources/sounds/combine2.mp3" id="12_barm0"]
+[ext_resource type="Script" path="res://scenes/level/combine_audio.gd" id="13_7yoi7"]
 [ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://resources/sounds/bgm.mp3" id="13_w4n4b"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikqpv"]
@@ -246,6 +247,7 @@ texture = ExtResource("6_odop2")
 [node name="combine_audio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("12_barm0")
 max_polyphony = 11
+script = ExtResource("13_7yoi7")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(201, 430)
@@ -254,6 +256,7 @@ position = Vector2(201, 430)
 stream = ExtResource("13_w4n4b")
 volume_db = -4.069
 
+[connection signal="combo_progress" from="." to="combine_audio" method="_on_level_combo_progress"]
 [connection signal="game_over" from="." to="dispenser" method="_on_level_game_over"]
 [connection signal="high_score_updated" from="." to="ui_root/top_bar/high_score" method="_on_level_high_score_updated"]
 [connection signal="score_changed" from="." to="ui_root/top_bar/score" method="_on_level_score_changed"]
