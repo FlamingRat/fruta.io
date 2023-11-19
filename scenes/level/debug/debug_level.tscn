@@ -5,42 +5,70 @@
 
 [node name="level" instance=ExtResource("1_q170l")]
 
-[node name="fruit2" parent="." index="7" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
-position = Vector2(128, 277)
-mass = 4.26562
+[node name="fruit3" parent="." index="6" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(49, 289)
 level_manager = NodePath("..")
-level = 6
+
+[node name="fruit2" parent="." index="7" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(55, 360)
+mass = 1.55603
+level_manager = NodePath("..")
+level = 2
 
 [node name="fruit" parent="." index="8" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
-position = Vector2(57, 301)
+position = Vector2(46, 327)
 level_manager = NodePath("..")
 
 [node name="fruit4" parent="." index="9" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
-position = Vector2(149, 499)
-mass = 4.26562
-level_manager = NodePath("..")
-level = 6
-
-[node name="fruit6" parent="." index="10" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
-position = Vector2(256, 503)
-mass = 7.23397
-level_manager = NodePath("..")
-level = 10
-
-[node name="fruit7" parent="." index="11" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
-position = Vector2(300, 263)
+position = Vector2(89, 523)
 mass = 3.55484
 level_manager = NodePath("..")
 level = 5
 
-[node name="fruit8" parent="." index="12" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
-position = Vector2(66, 412)
+[node name="fruit6" parent="." index="10" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(104, 615)
 mass = 4.26562
 level_manager = NodePath("..")
 level = 6
 
-[node name="fruit1" parent="." index="13" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
-position = Vector2(158, 693)
+[node name="fruit7" parent="." index="11" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(72, 473)
+mass = 2.86179
+level_manager = NodePath("..")
+level = 4
+
+[node name="fruit8" parent="." index="12" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(64, 410)
+mass = 2.19188
+level_manager = NodePath("..")
+level = 3
+
+[node name="fruit9" parent="." index="13" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(106, 737)
+mass = 4.99084
+level_manager = NodePath("..")
+level = 7
+
+[node name="fruit10" parent="." index="14" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(228, 573)
+mass = 5.72831
+level_manager = NodePath("..")
+level = 8
+
+[node name="fruit12" parent="." index="15" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(552, 518)
+mass = 4.99084
+level_manager = NodePath("..")
+level = 7
+
+[node name="fruit11" parent="." index="16" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(276, 383)
+mass = 6.47642
+level_manager = NodePath("..")
+level = 9
+
+[node name="fruit1" parent="." index="17" node_paths=PackedStringArray("level_manager") instance=ExtResource("2_8u4wa")]
+position = Vector2(270, 180)
 mass = 7.23397
 level_manager = NodePath("..")
 level = 10

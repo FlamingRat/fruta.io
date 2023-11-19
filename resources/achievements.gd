@@ -2,6 +2,7 @@ extends Resource
 class_name AchievementManager
 
 
+const MAX_COMBO_MULTIPLIER = 8
 const LEADERBOARD_HIGH_SCORES = "CgkIrZ_72roEEAIQAw"
 const LEADERBOARD_WATERMELONS = "CgkIrZ_72roEEAIQBA"  # TODO: Implement global counter
 const FIRST_MERGE = "CgkIrZ_72roEEAIQBg"
@@ -18,6 +19,8 @@ const SO_MANY_STARS = "CgkIrZ_72roEEAIQCQ"
 var play_games_services
 var ready = false
 var session_unlocks = {}
+var achievement_cube_counter: int = 0
+var heartbreaker_counter: int = 0
 
 
 func _init():
@@ -83,3 +86,36 @@ func view_leaderboard(leaderboard_id: String):
 
 func is_ready() -> bool:
 	return ready
+	
+	
+func combine_achievements(combo_counter: int, level: int):
+	unlock(FIRST_MERGE)
+
+	if level == 5:
+		heartbreaker_counter += 1
+		
+		if heartbreaker_counter == 3:
+			unlock(HEARTBREAKER)
+	else:
+		heartbreaker_counter = 0
+
+	if level == 7:
+		achievement_cube_counter += 1
+		
+		if achievement_cube_counter >= 4:
+			unlock(TOO_MUCH_EDGE)
+	if level == 8:
+		achievement_cube_counter -= 1
+		
+	if level == Fruit.MAX_LEVEL:
+		unlock(MAX_FRUIT)
+		
+		if combo_counter == MAX_COMBO_MULTIPLIER:
+			unlock(SO_MANY_STARS)
+		
+	if combo_counter == 2:
+		increment(CHAIN_REACTION, 1)
+		increment(CHAIN_REACTION_II, 1)
+		
+	if combo_counter == MAX_COMBO_MULTIPLIER:
+		unlock(LEGENDARY)

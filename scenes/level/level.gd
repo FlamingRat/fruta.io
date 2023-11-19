@@ -7,14 +7,13 @@ const SCORE_VERSION = '23.11.13.1'
 const GAME_OVER_TIMEOUT = 7.0
 const GAME_OVER_WARNING = 3.0
 const GAME_OVER_BOUNDARY_TIMER = 1.0
-const MAX_COMBO_MULTIPLIER = 8
 const HIGH_SCORE_FILE = "user://highscores.save"
 
 
 signal score_changed(score: int)
 signal high_score_updated(score: int)
 signal game_over
-signal combo_progress(combo_counter: int, fruit_level: int)
+signal combo_progress(combo_counter: int)
 signal combo_reset
 
 
@@ -24,8 +23,6 @@ var combo_counter: int = 0
 var game_over_timer: float = 0
 var is_game_over = false
 var high_score: int = 0
-var achievement_cube_counter: int = 0
-var heartbreaker_counter: int = 0
 
 
 @onready var game_over_timer_label: Label = $ui_root/main_ui/game_over_timer
@@ -130,29 +127,15 @@ func _on_fruit_combined(level: int):
 	if is_game_over:
 		return
 		
-	achievements.unlock(AchievementManager.FIRST_MERGE)
+	if combo_counter < AchievementManager.MAX_COMBO_MULTIPLIER:
+		combo_counter += 1
 
-	if level == 5:
-		heartbreaker_counter += 1
-		
-		if heartbreaker_counter == 6:
-			achievements.unlock(AchievementManager.HEARTBREAKER)
-	else:
-		heartbreaker_counter = 0
+	achievements.combine_achievements(
+		combo_counter,
+		level,
+	)
 
-	if level == 7:
-		achievement_cube_counter += 1
-		
-		if achievement_cube_counter >= 4:
-			achievements.unlock(AchievementManager.TOO_MUCH_EDGE)
-	if level == 8:
-		achievement_cube_counter -= 1
-		
-	if level == Fruit.MAX_LEVEL:
-		achievements.unlock(AchievementManager.MAX_FRUIT)
-
-	combo_counter += 1
-	combo_progress.emit(combo_counter, level)
+	combo_progress.emit(combo_counter)
 
 	score += ceil(int(pow(2, level - 1)) * combo_counter)
 

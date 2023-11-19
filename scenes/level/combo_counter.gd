@@ -15,7 +15,6 @@ const COMBO_LABELS = [
 ]
 
 
-var achievements: AchievementManager = preload("res://resources/achievements.tres")
 var combo_tween: Tween
 
 
@@ -40,20 +39,9 @@ func animate(combo_counter: int):
 		"font_size", 30 + 2 * (combo_counter - 2)
 	)
 
-func _on_level_combo_progress(combo_counter: int, fruit_level: int):
+
+func _on_level_combo_progress(combo_counter: int):
 	animate(combo_counter)
-		
-	if combo_counter == 2:
-		achievements.increment(AchievementManager.CHAIN_REACTION, 1)
-		achievements.increment(AchievementManager.CHAIN_REACTION_II, 1)
-		
-	if combo_counter == MAX_COMBO_MULTIPLIER:
-		achievements.unlock(AchievementManager.LEGENDARY)
-		
-		if fruit_level == Fruit.MAX_LEVEL:
-			achievements.unlock(
-				AchievementManager.SO_MANY_STARS,
-			)
 
 
 func _on_level_combo_reset():
