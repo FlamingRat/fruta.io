@@ -1,6 +1,0 @@
-[gd_resource type="Resource" script_class="AchievementManager" load_steps=2 format=3 uid="uid://bj0n1hanpb0nk"]
-
-[ext_resource type="Script" path="res://resources/achievements.gd" id="1_kotxo"]
-
-[resource]
-script = ExtResource("1_kotxo")

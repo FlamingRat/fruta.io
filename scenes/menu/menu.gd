@@ -1,12 +1,9 @@
 extends Control
 
 
-const achievements = preload("res://resources/achievements.tres")
-
-
 func _process(_delta):
 	$CanvasLayer/Control/vbox/leaderboards_container.visible = \
-		achievements.is_ready()
+		Achievements.is_ready()
 
 
 func _on_button_pressed():
@@ -14,4 +11,4 @@ func _on_button_pressed():
 
 
 func _on_leaderboards_pressed():
-	achievements.view_leaderboard(AchievementManager.LEADERBOARD_HIGH_SCORES)
+	Achievements.view_leaderboard(Achievements.LEADERBOARD_HIGH_SCORES)

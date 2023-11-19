@@ -1,5 +1,4 @@
-extends Resource
-class_name AchievementManager
+extends Node
 
 
 const MAX_COMBO_MULTIPLIER = 8
@@ -17,13 +16,13 @@ const SO_MANY_STARS = "CgkIrZ_72roEEAIQCQ"
 
 
 var play_games_services
-var ready = false
+var _is_ready = false
 var session_unlocks = {}
 var achievement_cube_counter: int = 0
 var heartbreaker_counter: int = 0
 
 
-func _init():
+func _ready():
 	if Engine.has_singleton("GodotPlayGamesServices"):
 		play_games_services = Engine.get_singleton("GodotPlayGamesServices")
 
@@ -41,11 +40,11 @@ func _init():
 
 
 func _on_sign_in_success(_acc_data):
-	ready = true
+	_is_ready = true
 
 
 func _on_sign_in_failed(_info):
-	ready = false
+	_is_ready = false
 	
 	
 func unlock(achievement_id: String):
@@ -56,7 +55,7 @@ func unlock(achievement_id: String):
 
 	session_unlocks[achievement_id] = true
 	
-	if not ready:
+	if not _is_ready:
 		return
 
 	play_games_services.unlockAchievement(achievement_id)
@@ -65,7 +64,7 @@ func unlock(achievement_id: String):
 func increment(achievement_id: String, step: int):	
 	print('Achievement incremented: ', achievement_id)
 
-	if not ready:
+	if not _is_ready:
 		return
 
 	play_games_services.incrementAchievement(achievement_id, step)
@@ -74,7 +73,7 @@ func increment(achievement_id: String, step: int):
 func leaderboard_submit(leaderboard_id: String, score: float):
 	print("Submitted for leaderboard ", leaderboard_id, ": ", score)
 
-	if not ready:
+	if not _is_ready:
 		return
 		
 	play_games_services.submitLeaderBoardScore(leaderboard_id, score)
@@ -85,10 +84,13 @@ func view_leaderboard(leaderboard_id: String):
 
 
 func is_ready() -> bool:
-	return ready
+	return _is_ready
 	
 	
 func combine_achievements(combo_counter: int, level: int):
+	if not ready:
+		return
+	
 	unlock(FIRST_MERGE)
 
 	if level == 5:

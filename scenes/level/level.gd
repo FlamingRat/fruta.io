@@ -2,7 +2,6 @@ extends Node2D
 class_name LevelManager
 
 
-const achievements = preload("res://resources/achievements.tres")
 const SCORE_VERSION = '23.11.13.1'
 const GAME_OVER_TIMEOUT = 7.0
 const GAME_OVER_WARNING = 3.0
@@ -75,7 +74,7 @@ func game_over_countdown(delta: float):
 
 func reset_game_over_countdown():
 	if ceil(game_over_timer) == GAME_OVER_TIMEOUT:
-		achievements.unlock(AchievementManager.PANIC_MODE)
+		Achievements.unlock(Achievements.PANIC_MODE)
 	
 	game_over_timer = 0
 	game_over_timer_label.set_text('')
@@ -89,8 +88,8 @@ func declare_game_over():
 	game_over.emit()
 	
 	if high_score <= score:
-		achievements.leaderboard_submit(
-			AchievementManager.LEADERBOARD_HIGH_SCORES,
+		Achievements.leaderboard_submit(
+			Achievements.LEADERBOARD_HIGH_SCORES,
 			score,
 		)
 
@@ -127,10 +126,10 @@ func _on_fruit_combined(level: int):
 	if is_game_over:
 		return
 		
-	if combo_counter < AchievementManager.MAX_COMBO_MULTIPLIER:
+	if combo_counter < Achievements.MAX_COMBO_MULTIPLIER:
 		combo_counter += 1
 
-	achievements.combine_achievements(
+	Achievements.combine_achievements(
 		combo_counter,
 		level,
 	)
