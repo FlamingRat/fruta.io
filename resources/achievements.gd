@@ -13,6 +13,7 @@ const PANIC_MODE = "CgkIrZ_72roEEAIQBQ"
 const TOO_MUCH_EDGE = "CgkIrZ_72roEEAIQCA"
 const HEARTBREAKER = "CgkIrZ_72roEEAIQCw"
 const SO_MANY_STARS = "CgkIrZ_72roEEAIQCQ"
+const STYLE_POINTS = "CgkIrZ_72roEEAIQDA"
 
 
 var play_games_services

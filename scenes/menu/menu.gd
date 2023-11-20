@@ -12,3 +12,7 @@ func _on_button_pressed():
 
 func _on_leaderboards_pressed():
 	Achievements.view_leaderboard(Achievements.LEADERBOARD_HIGH_SCORES)
+
+
+func _on_skins_pressed():
+	get_tree().change_scene_to_file("res://scenes/menu/customize.tscn")

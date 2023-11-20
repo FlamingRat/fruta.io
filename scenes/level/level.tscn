@@ -7,12 +7,12 @@
 [ext_resource type="Script" path="res://scenes/score/score.gd" id="4_hs868"]
 [ext_resource type="Script" path="res://scenes/score/high_score.gd" id="5_aovaq"]
 [ext_resource type="Texture2D" uid="uid://c8dskxkn3cvby" path="res://sprites/icons.png" id="5_iawld"]
-[ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/fruit.png" id="6_hv4x0"]
 [ext_resource type="Texture2D" uid="uid://bd4f20kstf3q1" path="res://sprites/game_over_threshold.png" id="6_odop2"]
 [ext_resource type="Theme" uid="uid://b8quhq0sg6j8c" path="res://resources/styles/label_font.tres" id="6_sfcy3"]
 [ext_resource type="PackedScene" uid="uid://n2wim102fk0t" path="res://scenes/level/click_mask.tscn" id="8_fha15"]
 [ext_resource type="Script" path="res://scenes/level/combo_counter.gd" id="10_8wqjs"]
 [ext_resource type="Script" path="res://scenes/level/toggle_music.gd" id="10_17hff"]
+[ext_resource type="Texture2D" uid="uid://cd4vdldg1vr7c" path="res://sprites/skins/default/fruit.png" id="11_t16e0"]
 [ext_resource type="AudioStream" uid="uid://6bgxjmk1ijvi" path="res://resources/sounds/combine2.mp3" id="12_barm0"]
 [ext_resource type="Script" path="res://scenes/level/combine_audio.gd" id="13_7yoi7"]
 [ext_resource type="AudioStream" uid="uid://dug77y81g5kgj" path="res://resources/sounds/bgm.mp3" id="13_w4n4b"]
@@ -183,7 +183,7 @@ offset_top = 50.0
 offset_right = -6.0
 offset_bottom = 86.0
 grow_horizontal = 2
-texture = ExtResource("6_hv4x0")
+texture = ExtResource("11_t16e0")
 expand_mode = 5
 stretch_mode = 4
 

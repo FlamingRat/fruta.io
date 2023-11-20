@@ -37,6 +37,8 @@ func _ready():
 	if Engine.is_editor_hint():
 		return
 
+	sprite.texture = Customization.get_skin_resource('fruit')
+
 	if level_manager:
 		combine.connect(level_manager._on_fruit_combined)
 

@@ -23,6 +23,8 @@
   <string name="achievement_is_that_a_melon" translatable="false">CgkIrZ_72roEEAIQAg</string>
   <!--achievement So Many Stars-->
   <string name="achievement_so_many_stars" translatable="false">CgkIrZ_72roEEAIQCQ</string>
+  <!--achievement Style Points-->
+  <string name="achievement_style_points" translatable="false">CgkIrZ_72roEEAIQDA</string>
   <!--leaderboard High Scores-->
   <string name="leaderboard_high_scores" translatable="false">CgkIrZ_72roEEAIQAw</string>
   <!--leaderboard Watermelon Sugar-->

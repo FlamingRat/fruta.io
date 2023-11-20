@@ -67,5 +67,14 @@ alignment = 1
 layout_mode = 2
 text = "LEADERBOARDS"
 
+[node name="skins_container" type="HBoxContainer" parent="CanvasLayer/Control/vbox"]
+layout_mode = 2
+alignment = 1
+
+[node name="Skins" type="Button" parent="CanvasLayer/Control/vbox/skins_container"]
+layout_mode = 2
+text = "CUSTOMIZE"
+
 [connection signal="pressed" from="CanvasLayer/Control/vbox/new_game_container/NewGame" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/vbox/leaderboards_container/Leaderboards" to="." method="_on_leaderboards_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/vbox/skins_container/Skins" to="." method="_on_skins_pressed"]

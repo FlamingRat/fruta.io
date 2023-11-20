@@ -25,6 +25,7 @@ var high_score: int = 0
 
 
 @onready var game_over_timer_label: Label = $ui_root/main_ui/game_over_timer
+@onready var progression_indicator: TextureRect = $ui_root/top_bar/progression
 
 
 func update_high_score(new_score: int):
@@ -41,6 +42,10 @@ func update_high_score(new_score: int):
 
 
 func _ready():
+	progression_indicator.texture = Customization.get_skin_resource('fruit')
+	if Customization.current_skin != 'default':
+		Achievements.unlock(Achievements.STYLE_POINTS)
+	
 	if FileAccess.file_exists(HIGH_SCORE_FILE):
 		var fd = FileAccess.open(HIGH_SCORE_FILE, FileAccess.READ)
 		var data = fd.get_var(true)
