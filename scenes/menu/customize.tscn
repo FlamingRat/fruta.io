@@ -66,6 +66,7 @@ size_flags_horizontal = 4
 [node name="Default" type="Button" parent="CanvasLayer/Control/vbox/buttons_container"]
 layout_mode = 2
 toggle_mode = true
+button_pressed = true
 text = "    DEFAULT  "
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Control/vbox/buttons_container/Default"]
